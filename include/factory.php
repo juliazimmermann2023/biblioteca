@@ -24,4 +24,5 @@ class Factory{
     public static function autor(){
         return new Autor();
     }
-} 
+}  
+?>

@@ -1,5 +1,6 @@
 <?php
-class Livro{
+class Livro
+{
     private $id;
     private $titulo;
     private $ano;
@@ -10,83 +11,56 @@ class Livro{
     private $data_alteracao;
     private $inclusao_funcionario_id;
     private $alteracao_funcionario_id;
+    
     public function getId(){
-        return $this->id;
-    }
-
+    return $this->id;}
     public function setId($id){
-        $this->id = $id;
-    }
+    $this->id = $id;}
 
     public function getTitulo(){
-        return $this->titulo;
-    }
-
+    return $this->titulo;}
     public function setTitulo($titulo){
-        $this->titulo = $titulo;
-    }
+    $this->titulo = $titulo;}
 
     public function getAno(){
-        return $this->ano;
-    }
-
+    return $this->ano;}
     public function setAno($ano){
-        $this->ano = $ano;
-    }
+    $this->ano = $ano;}
 
     public function getGenero(){
-        return $this->genero;
-    }
-
+    return $this->genero;}
     public function setGenero($genero){
-        $this->genero = $genero;
-    }
+    $this->genero = $genero;}
 
     public function getIsbn(){
-        return $this->isbn;
-    }
-
+    return $this->isbn;}
     public function setIsbn($isbn){
-        $this->isbn = $isbn;
-    }
+    $this->isbn = $isbn;}
 
     public function getAutorId(){
-        return $this->autor_id;
-    }
-
+    return $this->autor_id;}
     public function setAutorId($autor_id){
-        $this->autor_id = $autor_id;
-    }
+    $this->autor_id = $autor_id;}
 
     public function getDataInclusao(){
-        return $this->data_inclusao;
-    }
-
+    return $this->data_inclusao;}
     public function setDataInclusao($data_alteracao){
-        $this->data_alteracao = $data_alteracao;
-    }
+    $this->data_alteracao = $data_alteracao;}
 
     public function getDataAlteracao(){
-        return $this->data_alteracao;
-    }
-
+    return $this->data_alteracao;}
     public function setDataAlteracao($data_alteracao){
-        $this->data_alteracao = $data_alteracao;
-    }
+    $this->data_alteracao = $data_alteracao;}
 
     public function getInclusaoFuncionarioId(){
-        return $this->inclusao_funcionario_id;
-    }
-
+    return $this->inclusao_funcionario_id;}
     public function setInclusaoFuncionarioId($inclusao_funcionario_id){
-        $this->inclusao_funcionario_id = $inclusao_funcionario_id;
-    }
+    $this->inclusao_funcionario_id = $inclusao_funcionario_id;}
 
     public function getAlteracaoFuncionarioId(){
-        return $this->alteracao_funcionario_id;
-    }
-
+    return $this->alteracao_funcionario_id;}
     public function setAlteracaoFuncionarioId($alteracao_funcionario_id){
-        $this->alteracao_funcionario_id = $alteracao_funcionario_id;
-    }
+    $this->alteracao_funcionario_id = $alteracao_funcionario_id;}
+
 }
+?>
