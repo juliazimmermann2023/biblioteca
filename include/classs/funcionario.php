@@ -42,24 +42,24 @@ class Funcionario
     public function setEmail($email){
         $this-> email = $email;}
 
-    public function getData_inclusao(){
+    public function getDataInclusao(){
         return $this->data_inclusao;}
-    public function setData_inclusao($data_inclusao){
+    public function setDataInclusao($data_inclusao){
         $this-> data_inclusao = $data_inclusao;}
 
-    public function getdata_alteracao(){
+    public function getdataAlteracao(){
         return $this->data_alteracao;}
-    public function setdata_alteracao($data_alteracao){
+    public function setdataAlteracao($data_alteracao){
         $this-> data_alteracao = $data_alteracao;}
 
-    public function getInclusao_funcionario_id(){
+    public function getInclusaoFuncionarioId(){
         return $this->inclusao_funcionario_id;}
-    public function setInclusao_funcionario_id($inclusao_funcionario_id){
+    public function setInclusaoFuncionarioId($inclusao_funcionario_id){
         $this-> inclusao_funcionario_id= $inclusao_funcionario_id;}
 
-    public function getAlteracao_funcionario_id(){
+    public function getAlteracaoFuncionarioId(){
         return $this->alteracao_funcionario_id;}
-    public function setAlteracao_funcionario_id($alteracao_funcionario_id){
+    public function setAlteracaoFuncionarioId($alteracao_funcionario_id){
         $this-> alteracao_funcionario_id = $alteracao_funcionario_id;}
  
 }
