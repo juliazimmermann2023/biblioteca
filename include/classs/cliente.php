@@ -60,7 +60,7 @@ class Cliente
 
     public function getInclusaoFuncionarioId(){
       return $this->inclusao_funcionario_id;}
-    public function setIinclusaoFuncionarioId($inclusao_funcionario_id){
+    public function setInclusaoFuncionarioId($inclusao_funcionario_id){
       $this->id = $inclusao_funcionario_id;}
 
     public function getAlteracaoFuncionarioId(){
