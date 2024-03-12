@@ -34,7 +34,7 @@ class EmprestimoRepository implements repository
     {
         $db = DB::getInstance();
 
-        $sql = "SELECT * from autor where id = :id";
+        $sql = "SELECT * from emprestimo where id = :id";
 
         $query = $db->prepare($sql);
         $query->bindParam("id", $id);

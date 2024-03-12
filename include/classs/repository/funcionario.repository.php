@@ -34,10 +34,38 @@ class FuncionarioRepository implements Repository{
     public static function get($id){
         $db = DB::getInstance();
 
-        $sql = "SELECT * FROM autor WHERE id = :id";
+        $sql = "SELECT * FROM funcionario WHERE id = :id";
 
         $query = $db->prepare($sql);
         $query->bindParam(":id",$id);
+        $query->execute();
+
+        if($query->rowCount() > 0 ){
+            $row = $query->fetch(PDO::FETCH_OBJ);
+
+            $funcionario = new Funcionario;
+            $funcionario->setId($row->id);
+            $funcionario->setNome($row->nome);
+            $funcionario->setCpf($row->cpf);
+            $funcionario->setTelefone($row->telefone);
+            $funcionario->setSenha($row->senha,true);
+            $funcionario->setEmail($row->email);
+            $funcionario->setDataInclusao($row->data_inclusao);
+            $funcionario->setDataAlteracao($row->data_alteracao);
+            $funcionario->setInclusaoFuncionarioId($row->inclusao_funcionario_id);
+            $funcionario->setAlteracaoFuncionarioId($row->alteracao_funcionario_id);
+
+            $list[] = $funcionario;
+        }
+        return null;
+    }
+    public static function getByCPF($cpf){
+        $db = DB::getInstance();
+
+        $sql = "SELECT * FROM funcionario WHERE cpf = :cpf";
+
+        $query = $db->prepare($sql);
+        $query->bindParam(":cpf",$cpf);
         $query->execute();
 
         if($query->rowCount() > 0 ){

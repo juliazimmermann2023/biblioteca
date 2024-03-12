@@ -14,7 +14,7 @@
             justify-content: center;
             align-items: center;
             height: 100vh;
-            background-image: url('https://static.wikia.nocookie.net/disney/images/f/f5/Beauty-and-the-beast-disneyscreencaps.com-6089.jpg/revision/latest?cb=20170425032130&path-prefix=pt-br');
+            background-image: url('https://images4.alphacoders.com/132/1326368.png');
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
@@ -63,12 +63,27 @@
 <body>
     <div class="login-container">
         <h2>Faça seu Login</h2>
-        <form action="#">
-            <input type="text" name="cpf" placeholder="Cpf">
-            <input type="password" name="password" placeholder="Senha">
+        <form action="#" class="login-form">
+            <input type="text" name="cpf" placeholder="Cpf" required>
+            <input type="password" name="password" placeholder="Senha" required>
             <input type="submit" value="Entrar">
         </form>
     </div>
+    <script>
+        document.getElementById('login-form').addEventListener('submit', function(event) {
+    event.preventDefault();
+    
+    let cpf = document.getElementById('cpf').value;
+    let password = document.getElementById('password').value;
+    
+    if (cpf.length === 14 && password.length >= 10) {
+        // Aqui você pode adicionar a lógica para verificar o CPF e a senha
+        window.location.href = 'dashboard.html';
+    } else {
+        document.getElementById('error-message').innerText = 'CPF deve conter 14 dígitos e senha deve ter no mínimo 10 caracteres';
+    }
+});
+    </script>
 </body>
 
 </html>
