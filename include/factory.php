@@ -12,7 +12,7 @@ include_once("class/repository/cliente.repository.php");
 include_once("class/repository/emprestimo.repository.php");
 include_once("class/repository/funcionario.repository.php");
 include_once("class/repository/livro.repository.php");
-include_once("class/repository/auth.php");
+include_once("class/auth.php");
 class Factory{
     public static function  db(){
         return DB:: getInstance();

@@ -50,18 +50,18 @@ if(Auth::isAuthenticated()){
             box-sizing: border-box;
         }
 
-        .login-container input[type="submit"] {
+        .btn{
             width: 100%;
             padding: 10px;
             margin-top: 10px;
             border: none;
             border-radius: 5px;
             background-color: #000000;
-            color: #fff;
+            color: white;
             cursor: pointer;
         }
 
-        .login-container input[type="submit"]:hover {
+        .btn:hover {
             background-color: #000000;
         }
     </style>
@@ -70,27 +70,13 @@ if(Auth::isAuthenticated()){
 <body>
     <div class="login-container">
         <h2>Faça seu Login</h2>
-        <form action="#" class="login-form">
+        <form action="logar.php" class="login-form" method="post">
             <input type="text" name="cpf" placeholder="Cpf" required>
-            <input type="password" name="password" placeholder="Senha" required>
-            <input type="submit" value="Entrar">
+            <input type="password" name="senha" placeholder="Senha" required>
+            <button type="submit" class="btn"> Entrar</button>
         </form>
     </div>
-    <script>
-        document.getElementById('login-form').addEventListener('submit', function(event) {
-    event.preventDefault();
-    
-    let cpf = document.getElementById('cpf').value;
-    let password = document.getElementById('password').value;
-    
-    if (cpf.length === 14 && password.length >= 10) {
-        // Aqui você pode adicionar a lógica para verificar o CPF e a senha
-        window.location.href = 'dashboard.html';
-    } else {
-        document.getElementById('error-message').innerText = 'CPF deve conter 14 dígitos e senha deve ter no mínimo 10 caracteres';
-    }
-});
-    </script>
+
 </body>
 
 </html>

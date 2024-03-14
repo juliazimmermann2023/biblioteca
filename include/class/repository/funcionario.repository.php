@@ -17,7 +17,7 @@ class FuncionarioRepository implements Repository{
             $funcionario->setNome($row->nome);
             $funcionario->setCpf($row->cpf);
             $funcionario->setTelefone($row->telefone);
-            $funcionario->setSenha($row->senha);
+            $funcionario->setSenha($row->senha,true);
             $funcionario->setEmail($row->email);
             $funcionario->setDataInclusao($row->data_inclusao);
             $funcionario->setDataAlteracao($row->data_alteracao);
@@ -55,7 +55,7 @@ class FuncionarioRepository implements Repository{
             $funcionario->setInclusaoFuncionarioId($row->inclusao_funcionario_id);
             $funcionario->setAlteracaoFuncionarioId($row->alteracao_funcionario_id);
 
-            $list[] = $funcionario;
+            return $funcionario;
         }
         return null;
     }
@@ -76,14 +76,14 @@ class FuncionarioRepository implements Repository{
             $funcionario->setNome($row->nome);
             $funcionario->setCpf($row->cpf);
             $funcionario->setTelefone($row->telefone);
-            $funcionario->setSenha($row->senha);
+            $funcionario->setSenha($row->senha,true);
             $funcionario->setEmail($row->email);
             $funcionario->setDataInclusao($row->data_inclusao);
             $funcionario->setDataAlteracao($row->data_alteracao);
             $funcionario->setInclusaoFuncionarioId($row->inclusao_funcionario_id);
             $funcionario->setAlteracaoFuncionarioId($row->alteracao_funcionario_id);
 
-            $list[] = $funcionario;
+            return $funcionario;
         }
         return null;
     }
