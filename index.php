@@ -12,49 +12,12 @@ if(!Auth::isAuthenticated()){
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Biblioteca Virtual - Página Inicial</title>
- 
+    <link rel="stylesheet" href="style.css">
 </head>
-<style>
-    body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-}
 
-header {
-    background-color: #333;
-    color:pink;
-    padding: 20px;
-    text-align: center;
-}
-
-nav ul {
-    list-style-type: none;
-    padding: 0;
-    margin: 0;
-}
-
-nav ul li {
-    display: inline;
-    margin-right: 20px;
-}
-
-nav ul li a {
-    text-decoration: none;
-    text align: center;
-    color: #333;
-    background-color: pink;
-    padding: 10px 20px;
-    border-radius: 10px;
-}
-
-nav ul li a:hover {
-    background-color: #ddd;
-}
-
-</style>
 <body>
     <header>
+        <a href="logout.php">Sair</a>
         <h1>Bem-vindo à Biblioteca Virtual</h1>
     </header>
     <nav>
@@ -64,6 +27,9 @@ nav ul li a:hover {
             <li><a href="livro.html">Livros</a></li>
             <li><a href="emprestimo.html">Empréstimos</a></li>
         </ul>
-    </nav>
+</nav>
+
+    
+
 </body>
 </html>
