@@ -3,7 +3,7 @@ class AutorRepository implements Repository{
     public static function listAll(){
   
         $db = DB :: getInstance();
-        $sql = "SELECT * FROM autor WHERE id = :id";
+        $sql = "SELECT * FROM autor";
         $query =$db->prepare($sql);
         $query->execute();
 
@@ -48,7 +48,7 @@ return null;
         $query->bindValue(":data_inclusao",$obj->getDataInclusao());
         $query->bindValue(":inclusao_funcionario_id",$obj->getInclusaoFuncionarioId());
         $query->execute();
-        $id=$db->lastInserId();
+        $id=$db->lastInsertId();
         return$id;
 
     }

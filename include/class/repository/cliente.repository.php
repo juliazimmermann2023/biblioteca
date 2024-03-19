@@ -72,7 +72,7 @@ class ClienteRepository implements repository
         $query->bindValue(":data_inclusao",$obj->getDataInclusao());
         $query->bindValue(":inclusao_funcionario_id",$obj->getInclusaoFuncionarioId());
         $query->execute();
-        $id=$db->lastInserId();
+        $id=$db->lastInsertId();
         return$id;
 
     }
