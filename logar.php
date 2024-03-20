@@ -1,19 +1,19 @@
 <?php
 include_once("include/factory.php");
-$cpf=$_POST["cpf"];
-$senha=$_POST["senha"];
-if($cpf == null || $senha == null ){
+$cpf = $_POST["cpf"];
+$senha = $_POST["senha"];
+if ($cpf == null || $senha == null) {
     header("location:login.php");
     exit();
 }
-if($cpf == "" || $senha == "" ){
+if ($cpf == "" || $senha == "") {
     header("location:login.php");
     exit();
 }
-$auth = Auth::login($cpf,$senha);
-if(Auth::isAuthenticated()){
+$auth = Auth::login($cpf, $senha);
+if (Auth::isAuthenticated()) {
     header("location:index.php");
     exit();
 }
-header("location:login.php?message=".$auth);
+header("location:login.php?message=" . $auth);
 exit();

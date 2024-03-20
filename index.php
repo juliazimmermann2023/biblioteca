@@ -1,13 +1,14 @@
 <?php
 include_once('include/factory.php');
 
-if(!Auth::isAuthenticated()){
+if (!Auth::isAuthenticated()) {
     header("Location: login.php");
     exit();
 }
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -25,13 +26,14 @@ if(!Auth::isAuthenticated()){
         <ul>
             <li><a href="autor_listagem.php">Autor</a></li>
             <li><a href="funcionario_listagem.php">Funcionários</a></li>
-            <li><a href="cliente.html">Clientes</a></li>
-            <li><a href="livro.html">Livros</a></li>
+            <li><a href="cliente_listagem.php">Clientes</a></li>
+            <li><a href="livro_listagem.php">Livros</a></li>
             <li><a href="emprestimo.html">Empréstimos</a></li>
         </ul>
-</nav>
+    </nav>
 
-    
+
 
 </body>
+
 </html>

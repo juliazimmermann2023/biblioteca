@@ -1,6 +1,6 @@
-<?php 
+<?php
 include_once("include/factory.php");
-if(Auth::isAuthenticated()){
+if (Auth::isAuthenticated()) {
     header("location: login.php");
     exit();
 }
@@ -50,7 +50,7 @@ if(Auth::isAuthenticated()){
             box-sizing: border-box;
         }
 
-        .btn{
+        .btn {
             width: 100%;
             padding: 10px;
             margin-top: 10px;

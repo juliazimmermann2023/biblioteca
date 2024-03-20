@@ -13,24 +13,30 @@ include_once("class/repository/emprestimo.repository.php");
 include_once("class/repository/funcionario.repository.php");
 include_once("class/repository/livro.repository.php");
 include_once("class/auth.php");
-class Factory{
-    public static function  db(){
-        return DB:: getInstance();
+class Factory
+{
+    public static function  db()
+    {
+        return DB::getInstance();
     }
-    public static function funcionario(){
+    public static function funcionario()
+    {
         return new Funcionario();
     }
-    public static function livro(){
+    public static function livro()
+    {
         return new Livro();
     }
-    public static function emprestimo(){
+    public static function emprestimo()
+    {
         return new Emprestimo();
     }
-    public static function cliente(){
+    public static function cliente()
+    {
         return new Cliente();
     }
-    public static function autor(){
+    public static function autor()
+    {
         return new Autor();
     }
-}  
-?>
+}

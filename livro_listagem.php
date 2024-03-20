@@ -78,12 +78,6 @@ if (!Auth::isAuthenticated()) {
         border-radius: 10px;
 
     }
-
-    #julia {
-
-        align-items: center;
-        justify-content: space-between;
-    }
 </style>
 
 <body>
@@ -107,24 +101,36 @@ if (!Auth::isAuthenticated()) {
 
 
     <div class="container">
-        <h2>AUTORES</h2>
-        <a id="julia" class="btn btn-info">Adicionar um novo autor</a>
+        <h2>LIVROS</h2>
+        <a id="julia" class="btn btn-info">Adicionar um novo livro</a>
         <div class="table-responsive">
             <table class="table">
                 <thead>
                     <tr>
                         <th>ID</th>
                         <th>Nome</th>
-                        <th>Ações</th>
+                        <th>Telefone</th>
+                        <th>Email</th>
+                        <th>Cpf</th>
+
+
+
+
+                        </th>
                     </tr>
                 </thead>
                 <tbody>
                     <?php
-                    foreach (AutorRepository::listAll() as $autor) {
+                    foreach (LivroRepository::listAll() as $livro) {
                     ?>
                         <tr>
-                            <td><?php echo $autor->getId(); ?></td>
-                            <td><?php echo $autor->getNome(); ?></td>
+                            <td><?php echo $livro->getId(); ?></td>
+                            <td><?php echo $livro->getTitulo(); ?></td>
+                            <td><?php echo $livro->getAno(); ?></td>
+                            <td><?php echo $livro->getGenero(); ?></td>
+                            <td><?php echo $livro->getIsbn(); ?></td>
+
+
                             <td>
                                 <a href="#" class="btn btn-info">Editar</a>
                                 <a href="#" class="btn btn-danger">Deletar</a>

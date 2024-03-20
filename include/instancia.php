@@ -1,7 +1,5 @@
 <?php
-class Valor{
+class Valor
+{
     public $valor;
-   
-
 }
-?>
