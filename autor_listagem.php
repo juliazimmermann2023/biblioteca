@@ -79,36 +79,28 @@ if (!Auth::isAuthenticated()) {
 
     }
 
-    #julia {
-
+    .julia {
+        display: flex;
         align-items: center;
         justify-content: space-between;
+        margin: 20px 0px;
+        padding-right: 100px;
+    }
+    .container{
+        max-width: 70vw;
     }
 </style>
 
 <body>
 
-    <header>
-        <a href="logout.php">Sair</a>
-        <h1>Bem-vindo à Biblioteca Virtual</h1>
-    </header>
-
-    <nav>
-        <ul>
-            <li><a href="autor_listagem.php">Autor</a></li>
-            <li><a href="funcionario_listagem.php">Funcionários</a></li>
-            <li><a href="cliente_listagem.php">Clientes</a></li>
-            <li><a href="livro_listagem.php">Livros</a></li>
-            <li><a href="emprestimo.html">Empréstimos</a></li>
-        </ul>
-    </nav>
-
-
+<?php include('include/menu.php'); ?>
 
 
     <div class="container">
-        <h2>AUTORES</h2>
-        <a id="julia" class="btn btn-info">Adicionar um novo autor</a>
+        <div class="julia">
+        <h2>AUTORES > LISTAGEM</h2>
+        <a id="julia" href="autor_novo.php" class="btn btn-info">Adicionar um novo autor</a>
+        </div>
         <div class="table-responsive">
             <table class="table">
                 <thead>
@@ -126,7 +118,7 @@ if (!Auth::isAuthenticated()) {
                             <td><?php echo $autor->getId(); ?></td>
                             <td><?php echo $autor->getNome(); ?></td>
                             <td>
-                                <a href="#" class="btn btn-info">Editar</a>
+                                <a href="autor_editar.php?id=<?php echo $autor->getId();?>" class="btn btn-info">Editar</a>
                                 <a href="#" class="btn btn-danger">Deletar</a>
                             </td>
                         </tr>

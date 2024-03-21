@@ -12,7 +12,7 @@ if (!Auth::isAuthenticated()) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NOVO AUTOR</title>
+    <title>NOVO FUNCIONÁRIO</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 <style>
@@ -78,11 +78,15 @@ if (!Auth::isAuthenticated()) {
         border-radius: 10px;
 
     }
-
-    #julia {
-
+    .julia {
+        display: flex;
         align-items: center;
         justify-content: space-between;
+        margin: 20px 0px;
+        padding-right: 100px;
+    }
+    .container{
+        max-width: 70vw;
     }
 </style>
 
@@ -107,8 +111,10 @@ if (!Auth::isAuthenticated()) {
 
 
     <div class="container">
-        <h2>FUNCIONARIOS</h2>
-        <a id="julia" class="btn btn-info">Adicionar um novo funcionario</a>
+        <div class="julia">
+        <h2>FUNCIONÁRIOS > LISTAGEM</h2>
+        <a id="julia" class="btn btn-info">Adicionar um novo funcionário</a>
+        </div>
         <div class="table-responsive">
             <table class="table">
                 <thead>

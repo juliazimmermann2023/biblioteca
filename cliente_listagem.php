@@ -12,7 +12,7 @@ if (!Auth::isAuthenticated()) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NOVO AUTOR</title>
+    <title>NOVO CL > LISTAGEMIENTE</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 <style>
@@ -79,35 +79,28 @@ if (!Auth::isAuthenticated()) {
 
     }
 
-    #julia {
-
+    .julia {
+        display: flex;
         align-items: center;
         justify-content: space-between;
+        margin: 20px 0px;
+        padding-right: 100px;
+    }
+    .container{
+        max-width: 70vw;
     }
 </style>
 
 <body>
 
-    <header>
-        <a href="logout.php">Sair</a>
-        <h1>Bem-vindo à Biblioteca Virtual</h1>
-    </header>
-
-    <nav>
-        <ul>
-            <li><a href="autor_listagem.php">Autor</a></li>
-            <li><a href="funcionario_listagem.php">Funcionários</a></li>
-            <li><a href="cliente_listagem.php">Clientes</a></li>
-            <li><a href="livro_listagem.php">Livros</a></li>
-            <li><a href="">Empréstimos</a></li>
-        </ul>
-    </nav>
-
+<?php include('include/menu.php'); ?>
 
 
     <div class="container">
-        <h2>CLIENTES</h2>
-        <a id="julia" class="btn btn-info">Adicionar um novo cliente</a>
+        <div class="julia">
+            <h2>CLIENTES > LISTAGEM</h2>
+            <a class="btn btn-info">Adicionar um novo cliente</a>
+        </div>
         <div class="table-responsive">
             <table class="table">
                 <thead>

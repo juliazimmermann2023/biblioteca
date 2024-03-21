@@ -58,12 +58,13 @@ class AutorRepository implements Repository
     public static function update($obj)
     {
         $db = DB::getInstance();
-        $sql = "UPDATE autor SET nome = :nome,data_alteracao =:data_alteracao,alteracao_funcionario= :alteracao_funcionario WHERE id = :id";
+        $sql = "UPDATE autor SET nome = :nome,data_alteracao =:data_alteracao,alteracao_funcionario_id= :alteracao_funcionario_id WHERE id = :id";
         $query = $db->prepare($sql);
         $query->bindValue(":nome", $obj->getNome());
-        $query->bindValue(":data_inclusao", $obj->getDataInclusao());
-        $query->bindValue(":inclusao_funcionario_id", $obj->getInclusaoFuncionarioId());
+        $query->bindValue(":data_alteracao", $obj->getDataInclusao());
+        $query->bindValue(":alteracao_funcionario_id", $obj->getInclusaoFuncionarioId());
         $query->bindValue(":id", $obj->getId());
+        $query->execute();
     }
     public static function delete($id)
     {
