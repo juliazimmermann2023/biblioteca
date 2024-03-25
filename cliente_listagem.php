@@ -7,12 +7,12 @@ if (!Auth::isAuthenticated()) {
 }
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NOVO CL > LISTAGEMIENTE</title>
+    <title>NOVO CLIENTE > LISTAGEM</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 <style>
@@ -99,7 +99,7 @@ if (!Auth::isAuthenticated()) {
     <div class="container">
         <div class="julia">
             <h2>CLIENTES > LISTAGEM</h2>
-            <a class="btn btn-info">Adicionar um novo cliente</a>
+            <a class="btn btn-info" href="cliente_novo.php">Adicionar um novo cliente</a>
         </div>
         <div class="table-responsive">
             <table class="table">
@@ -134,7 +134,7 @@ if (!Auth::isAuthenticated()) {
 
 
                             <td>
-                                <a href="#" class="btn btn-info">Editar</a>
+                                <a href="cliente_editar.php?id=<?php echo $cliente->getId();?>" class="btn btn-info">Editar</a>
                                 <a href="#" class="btn btn-danger">Deletar</a>
                             </td>
                         </tr>

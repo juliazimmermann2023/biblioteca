@@ -29,8 +29,7 @@ class ClienteRepository implements repository
         }
         return $list;
     }
-    public static function get($id)
-    {
+    public static function get($id){
         $db = DB::getInstance();
 
         $sql = "SELECT * from cliente where id = :id";
@@ -62,7 +61,7 @@ class ClienteRepository implements repository
     public static function insert($obj)
     {
         $db = DB::getInstance();
-        $sql = "INSERT INTO cliente(nome,telefone,email,cpf,rg,data_nascimento,data_inclusao,inclusao_funcionario_id) VALUES (:nome,:telefone,:email,:cpf,:rg,:data_nascimento,:data_inclusao,inclusao_funcionario_id=:inclusao_funcionario_id)";
+        $sql = "INSERT INTO cliente (nome,telefone,email,cpf,rg,data_nascimento,data_inclusao,inclusao_funcionario_id) VALUES (:nome,:telefone,:email,:cpf,:rg,:data_nascimento,:data_inclusao,:inclusao_funcionario_id)";
         $query = $db->prepare($sql);
         $query->bindValue(":nome", $obj->getNome());
         $query->bindValue(":telefone", $obj->getTelefone());
@@ -81,6 +80,7 @@ class ClienteRepository implements repository
         $db = DB::getInstance();
         $sql = "UPDATE cliente SET nome = :nome,telefone=:telefone,email=:email,cpf=:cpf,rg=:rg,data_nascimento=:data_nascimento,data_alteracao =:data_alteracao,alteracao_funcionario_id= :alteracao_funcionario_id WHERE id = :id";
         $query = $db->prepare($sql);
+        $query->bindValue(":id", $obj->getId());
         $query->bindValue(":nome", $obj->getNome());
         $query->bindValue(":telefone", $obj->getTelefone());
         $query->bindValue(":email", $obj->getEmail());
