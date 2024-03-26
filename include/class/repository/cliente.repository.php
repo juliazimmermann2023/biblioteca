@@ -75,8 +75,7 @@ class ClienteRepository implements repository
         $id = $db->lastInsertId();
         return $id;
     }
-    public static function update($obj)
-    {
+    public static function update($obj){
         $db = DB::getInstance();
         $sql = "UPDATE cliente SET nome = :nome,telefone=:telefone,email=:email,cpf=:cpf,rg=:rg,data_nascimento=:data_nascimento,data_alteracao =:data_alteracao,alteracao_funcionario_id= :alteracao_funcionario_id WHERE id = :id";
         $query = $db->prepare($sql);

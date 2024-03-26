@@ -5,16 +5,16 @@ if (!Auth::isAuthenticated()) {
     exit();
 }
 if(!isset($_GET['id'])){
-    header("location: cliente_listagem.php?1");
+    header("location: funcionario_listagem.php?1");
     exit();
 }
 if($_GET["id"] == "" || $_GET["id"] == NULL){
-    header("location: cliente_listagem.php?2");
+    header("location: funcionario_listagem.php?2");
     exit();
 }
-$cliente = ClienteRepository::get($_GET["id"]);
-if(!$cliente){
-    header("location: cliente_listagem.php?3");
+$funcionario = FuncionarioRepository::get($_GET["id"]);
+if(!$funcionario){
+    header("location: funcionario_listagem.php?3");
     exit();
 }
 ?>
@@ -91,13 +91,13 @@ if(!$cliente){
 
     }
 
- 
+  
 
     .container {
         max-width: 70vw;
     }
 
-    .cliente {
+    .autor {
         display: flex;
         align-items: center;
 
@@ -109,41 +109,33 @@ if(!$cliente){
         max-width: 70vw;
     }
 </style>
-
 <body>
-
-    <?php include('include/menu.php'); ?>
-
-  
+    <?php include("include/menu.php"); ?>
     <div class="container">
-
-        <h1>EDITAR CLIENTE</h1>
-        <a type="button" class="btn btn-warning" href="cliente_listagem.php">VOLTAR</a>
-        <a type="button" class="btn btn-warning" href="cliente_novo.php">NOVO</a>
+    <h1>EDITAR FUNCIONARIO</h1>
+        <a type="button" class="btn btn-warning" href="funcionario_listagem.php">VOLTAR</a>
+        <a type="button" class="btn btn-warning" href="funcionario_novo.php">NOVO</a>
         <div class="row mt-4">
             <div class="col-md-12">
-                <form action="cliente_editar_post.php" method="POST">
+                <form action="funcionario_editar_post.php" method="POST">
                     <div class="mb-3">
                         <label for="nome" class="form-label">Nome</label>
-                        <input type="text" name="nome" class="form-control" name="nome" value="<?php echo $cliente->getNome()?>">
+                        <input type="text" name="nome" class="form-control" name="id" value="<?php echo $funcionario->getNome()?>">
 
-                        <label for="telefone" class="form-label">Telefone</label>
-                        <input type="text" name="telefone" id="telefone" class="form-control" name="telefone" value="<?php echo $cliente->getTelefone()?>">
-
-                        <label for="email" class="form-label">Email</label>
-                        <input type="email" name="email" id="nome" class="form-control" name="email" value="<?php echo $cliente->getEmail()?>">
-
-                        <label for="cpf" class="form-label">Cpf</label>
-                        <input type="text" name="cpf" id="cpf" class="form-control" name="cpf" value="<?php echo $cliente->getCpf()?>">
+                        <label for="nome" class="form-label">Telefone</label>
+                        <input type="text" name="telefone" id="nome" class="form-control" name="id" value="<?php echo $funcionario->getTelefone()?>">
                         
-                        <label for="rg" class="form-label">Rg</label>
-                        <input type="text" name="rg" id="rg" class="form-control" name="rg" value="<?php echo $cliente->getRg()?>">
+                        <label for="nome" class="form-label">Cpf</label>
+                        <input type="text" name="cpf" id="nome" class="form-control" name="id" value="<?php echo $funcionario->getCpf()?>">
 
-                        <label for="data_nascimento" class="form-label">Data de nascimento</label>
-                        <input type="text" name="data_nascimento" id="data_nascimento" class="form-control" name="data_nascimento" value="<?php echo $cliente->getDataNascimento()?>">
+                        <label for="nome" class="form-label">Email</label>
+                        <input type="text" name="email" id="nome" class="form-control" name="id" value="<?php echo $funcionario->getEmail()?>">
+
+                       
+                    
                     </div>
                     <div class="mb-3">
-                        <input type="hidden" name="id" value="<?php echo $cliente->getId()?>">
+                        <input type="hidden" name="id" value="<?php echo $funcionario->getId()?>">
                         <button type="submit" class="btn btn-info">ENVIAR</button>
                     </div>
                 </form>
@@ -151,5 +143,4 @@ if(!$cliente){
         </div>
     </div>
 </body>
-
 </html>

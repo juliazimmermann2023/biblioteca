@@ -21,14 +21,13 @@ if (!$cliente) {
     exit();
 }
 if (!isset($_POST["nome"])) {
-    header("location:cliente_editar.php?".$cliente->getId());
+    header("location:cliente_editar.php?id=".$cliente->getId());
     exit();
 }
 if ($_POST["nome"] == "" || $_POST["nome"] == NULL) {
-    header("location: cliente_editar.php?".$cliente->getId());
+    header("location: cliente_editar.php?id=".$cliente->getId());
     exit();
 }
-$cliente = Factory::cliente();
 $cliente->setNome($_POST["nome"]);
 $cliente->setTelefone($_POST["telefone"]);
 $cliente->setEmail($_POST["email"]);
@@ -39,4 +38,4 @@ $cliente->setAlteracaoFuncionarioId($user->getId());
 $cliente->setDataAlteracao(date("Y-m-d H:i:s"));
 ClienteRepository::update($cliente);
 
-header("location: cliente_editar.php?".$cliente->getId());
+header("location: cliente_editar.php?id=".$cliente->getId());

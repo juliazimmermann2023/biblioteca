@@ -7,7 +7,7 @@ if (!Auth::isAuthenticated()) {
 }
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 
 <head>
     <meta charset="UTF-8">
@@ -113,7 +113,7 @@ if (!Auth::isAuthenticated()) {
     <div class="container">
         <div class="julia">
         <h2>FUNCIONÁRIOS > LISTAGEM</h2>
-        <a id="julia" class="btn btn-info">Adicionar um novo funcionário</a>
+        <a id="julia" href="funcionario_novo.php" class="btn btn-info">Adicionar um novo funcionário</a>
         </div>
         <div class="table-responsive">
             <table class="table">
@@ -144,7 +144,7 @@ if (!Auth::isAuthenticated()) {
 
 
                             <td>
-                                <a href="#" class="btn btn-info">Editar</a>
+                                <a href="funcionario_editar.php?id=<?php echo $funcionario->getId();?>" " class="btn btn-info">Editar</a>
                                 <a href="#" class="btn btn-danger">Deletar</a>
                             </td>
                         </tr>

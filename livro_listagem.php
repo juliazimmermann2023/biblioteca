@@ -99,7 +99,7 @@ if (!Auth::isAuthenticated()) {
         <div class="julia">
         <h2>LIVROS > LISTAGEM</h2>
         <div class="botao">
-            <button id="julia" class="btn btn-info">Adicionar um novo livro</button>
+            <a id="julia" href="livro_novo.php"  class="btn btn-info">Adicionar um novo livro</a>
         </div>
         </div>
         <div class="table-responsive">
@@ -131,7 +131,7 @@ if (!Auth::isAuthenticated()) {
 
 
                             <td>
-                                <a href="#" class="btn btn-info">Editar</a>
+                                <a href="livro_editar.php?id=<?php echo $livro->getId();?>"  class="btn btn-info">Editar</a>
                                 <a href="#" class="btn btn-danger">Deletar</a>
                             </td>
                         </tr>
