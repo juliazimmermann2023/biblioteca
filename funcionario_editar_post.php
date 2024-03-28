@@ -37,8 +37,8 @@ $funcionario->setNome($_POST['nome']);
 $funcionario->setCpf($_POST['cpf']);
 $funcionario->setTelefone($_POST['telefone']);
 $funcionario->setEmail($_POST['email']);
-$funcionario->setInclusaoFuncionarioId($user->getID());
-$funcionario->setDataInclusao(date('Y-d-m H:i:s'));
+$funcionario->setAlteracaoFuncionarioId($user->getID());
+$funcionario->setDataAlteracao(date('Y-d-m H:i:s'));
 
 FuncionarioRepository::update($funcionario);
 

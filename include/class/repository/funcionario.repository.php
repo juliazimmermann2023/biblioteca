@@ -50,7 +50,7 @@ class FuncionarioRepository implements Repository
             $funcionario->setNome($row->nome);
             $funcionario->setCpf($row->cpf);
             $funcionario->setTelefone($row->telefone);
-            $funcionario->setSenha($row->senha);
+            $funcionario->setSenha($row->senha,true);
             $funcionario->setEmail($row->email);
             $funcionario->setDataInclusao($row->data_inclusao);
             $funcionario->setDataAlteracao($row->data_alteracao);
@@ -117,13 +117,15 @@ class FuncionarioRepository implements Repository
         $db = DB::getInstance();
         $sql = "UPDATE funcionario SET nome = :nome, cpf = :cpf, telefone = :telefone, senha = :senha, email = :email, data_alteracao = :data_alteracao, alteracao_funcionario_id = :alteracao_funcionario_id WHERE id = :id";
         $query = $db->prepare($sql);
+        $query->bindValue(":id", $obj->getId());
         $query->bindValue(":nome", $obj->getNome());
         $query->bindValue(":cpf", $obj->getCpf());
         $query->bindValue(":telefone", $obj->getTelefone());
         $query->bindValue(":senha", $obj->getSenha());
         $query->bindValue(":email", $obj->getEmail());
-        $query->bindValue(":alteracao_inclusao", $obj->getDataInclusao());
-        $query->bindValue(":alteracao_funcionario_id", $obj->getInclusaoFuncionarioId());
+        $query->bindValue(":data_alteracao", $obj->getDataAlteracao());
+        $query->bindValue(":alteracao_funcionario_id", $obj->getAlteracaoFuncionarioId());
+        $query->execute();
     }
     public static function delete($id)
     {
@@ -132,5 +134,29 @@ class FuncionarioRepository implements Repository
         $query = $db->prepare($sql);
         $query->bindValue(":id", $id);
         $query->execute();
+    }
+    public static function countByInclusaoFuncionario($inclusao_funcionario_id){
+        $db = DB::getInstance();
+
+        $sql = 'SELECT count(*) FROM autor WHERE inclusao_funcionario_id = :inclusao_funcionario_id'; 
+
+        $query = $db->prepare($sql);
+        $query->bindValue(":inclusao_funcionario_id",$inclusao_funcionario_id);
+        $query->execute();
+
+        $row = $query->fetch(PDO::FETCH_ASSOC);
+        return $row["count(*)"];
+    }
+    public static function countByAlteracaoFuncionario($alteracao_funcionario_id){
+        $db = DB::getInstance();
+
+        $sql = 'SELECT count(*) FROM autor WHERE alteracao_funcionario_id = :alteracao_funcionario_id'; 
+
+        $query = $db->prepare($sql);
+        $query->bindValue(":alteracao_funcionario_id",$alteracao_funcionario_id);
+        $query->execute();
+
+        $row = $query->fetch(PDO::FETCH_ASSOC);
+        return $row["count(*)"];
     }
 }
