@@ -94,6 +94,7 @@ class EmprestimoRepository implements repository
         $query->bindValue(":data_renovacao", $obj->getDataRenovacao());
         $query->bindValue(":data_alteracao", $obj->getDataAlteracao());
         $query->bindValue(":alteracao_funcionario_id", $obj->getAlteracaoFuncionarioId());
+        $query->bindValue(":inclusao_funcionario_id", $obj->getInclusaoFuncionario());
         $query->bindValue(":id", $obj->getId());
         $query->execute();
     }

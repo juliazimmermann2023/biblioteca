@@ -23,7 +23,7 @@ if(!$funcio){
 }
 
 if(EmprestimoRepository::countByInclusaoFuncionario($funcio->getId()) > 0){
-    header("location: funcioList.php");
+    header("location:  funcionario_listagem.php");
     exit();
 }
 if(EmprestimoRepository::countByAlteracaoFuncionario($funcio->getId()) > 0){
@@ -49,18 +49,18 @@ if(ClienteRepository::countByAlteracaoFuncionario($funcio->getId()) > 0){
     exit();
 }
 if(AutorRepository::countByAlteracaoFuncionario($funcio->getId()) > 0){
-    header("location: funcioList.php");
+    header("location: funcionario_listagem.php");
     exit();
 }if(LivroRepository::countByInclusaoFuncionario($funcio->getId()) > 0){
-    header("location: funcioList.php");
+    header("location: funcionario_listagem.php");
     exit();
 }
 if(LivroRepository::countByAlteracaoFuncionario($funcio->getId()) > 0){
-    header("location: funcioList.php");
+    header("location: ffuncionario_listagem.php");
     exit();
 }
 
 
 FuncionarioRepository::delete($funcio->getId());
 
-header("Location: funcioList.php");
+header("Location: funcionario_listagem.php");
