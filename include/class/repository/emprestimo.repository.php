@@ -106,29 +106,5 @@ class EmprestimoRepository implements repository
         $query->bindValue(":id", $id);
         $query->execute();
     }
-    public static function countByRenovacaoFuncionario($renovacao_funcionario_id){
-        $db = DB::getInstance();
-
-        $sql = 'SELECT count(*) FROM emprestimo WHERE renovacao_funcionario_id = :renovacao_funcionario_id'; 
-
-        $query = $db->prepare($sql);
-        $query->bindValue(":renovacao_funcionario_id",$renovacao_funcionario_id);
-        $query->execute();
-
-        $row = $query->fetch(PDO::FETCH_ASSOC);
-        return $row["count(*)"];
-    }
-
-    public static function countByDevolucaoFuncionario($devolucao_funcionario_id){
-        $db = DB::getInstance();
-
-        $sql = 'SELECT count(*) FROM emprestimo WHERE devolucao_funcionario_id = :devolucao_funcionario_id'; 
-
-        $query = $db->prepare($sql);
-        $query->bindValue(":devolucao_funcionario_id",$devolucao_funcionario_id);
-        $query->execute();
-
-        $row = $query->fetch(PDO::FETCH_ASSOC);
-        return $row["count(*)"];
-    }
+    
 }

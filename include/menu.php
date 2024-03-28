@@ -9,6 +9,6 @@
             <li><a href="funcionario_listagem.php">Funcionários</a></li>
             <li><a href="cliente_listagem.php">Clientes</a></li>
             <li><a href="livro_listagem.php">Livros</a></li>
-            <li><a href="emprestimo.html">Empréstimos</a></li>
+            <li><a href="emprestimo_listagem.php">Empréstimos</a></li>
         </ul>
     </nav>
