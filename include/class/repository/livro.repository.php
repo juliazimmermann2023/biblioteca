@@ -2,8 +2,7 @@
 
 class LivroRepository implements repository
 {
-    public static function listAll()
-    {
+    public static function listAll(){
         $db = DB::getInstance();
 
         $sql = "SELECT * from livro";
@@ -12,7 +11,7 @@ class LivroRepository implements repository
         $query->execute();
 
         $list = array();
-        foreach ($query->fetchALL(PDO::FETCH_OBJ) as $row) {
+        foreach($query->fetchALL(PDO::FETCH_OBJ) as $row){
             $livro = new Livro;
             $livro->setId($row->id);
             $livro->setTitulo($row->titulo);
@@ -27,6 +26,7 @@ class LivroRepository implements repository
             $list[] = $livro;
         }
         return $list;
+
     }
     public static function get($id)
     {
@@ -57,21 +57,20 @@ class LivroRepository implements repository
         }
         return null;
     }
-    public static function insert($obj)
-    {
+    public static function insert($obj){
         $db = DB::getInstance();
 
-        $sql = "INSERT INTO livro (titulo, ano, genero, isbn, autor_id, data_inclusao, inclusao_funcionario_id) VALUES(:titulo,:ano, :genero, :isbn, :autor_id,:data_inclusao,:inclusao_funcionario_id)";
+        $sql = "INSERT INTO livro (titulo, ano, genero, isbn, autor_id, data_inclusao, inclusao_funcionario_id) VALUES(:titulo,:ano, :genero, :isbn, :autor_id, :data_inclusao,:inclusao_funcionario_id)";
 
         $query = $db->prepare($sql);
 
-        $query->bindValue(":titulo", $obj->getTitulo());
-        $query->bindValue(":ano", $obj->getAno());
-        $query->bindValue(":genero", $obj->getGenero());
-        $query->bindValue(":isbn", $obj->getIsbn());
-        $query->bindValue(":autor_id", $obj->getAutorId());
-        $query->bindValue(":data_inclusao", $obj->getDataInclusao());
-        $query->bindValue(":inclusao_funcionario_id", $obj->getInclusaoFuncionarioId());
+        $query->bindValue(":titulo",$obj->getTitulo());
+        $query->bindValue(":ano",$obj->getAno());
+        $query->bindValue(":genero",$obj->getGenero());
+        $query->bindValue(":isbn",$obj->getIsbn());
+        $query->bindValue(":autor_id",$obj->getAutorId());
+        $query->bindValue(":data_inclusao",$obj->getDataInclusao());
+        $query->bindValue(":inclusao_funcionario_id",$obj->getInclusaoFuncionarioId());
 
         $query->execute();
 
@@ -79,62 +78,69 @@ class LivroRepository implements repository
 
         return $id;
     }
-
-    public static function update($obj)
-    {
+ 
+    public static function update($obj){
         $db = DB::getInstance();
 
-        $sql = "UPDATE autor SET titulo = :titulo, data_alteracao = :data_alteracao, alteracao_funcionario_id = :alteracao_funcionario_id Where id = :id";
+        $sql = "UPDATE livro SET titulo = :titulo, ano = :ano, genero = :genero, isbn = :isbn, autor_id = :autor_id, data_alteracao = :data_alteracao, alteracao_funcionario_id = :alteracao_funcionario_id Where id = :id";
 
         $query = $db->prepare($sql);
-        $query->bindValue(":nome", $obj->getNome());
-        $query->bindValue(":data_alteracao", $obj->getDataAlteracao());
-        $query->bindValue(":alteracao_funcionario_id", $obj->getAlteracaoFuncionarioId());
-        $query->bindValue(":id", $obj->getId());
+        $query->bindValue(":titulo",$obj->getTitulo());
+        $query->bindValue(":ano",$obj->getAno());
+        $query->bindValue(":genero",$obj->getGenero());
+        $query->bindValue(":isbn",$obj->getIsbn());
+        $query->bindValue(":autor_id",$obj->getAutorId());
+        $query->bindValue(":data_alteracao",$obj->getDataAlteracao());
+        $query->bindValue(":alteracao_funcionario_id",$obj->getAlteracaoFuncionarioId());
+        $query->bindValue(":id",$obj->getId());
+        $query->execute();
+    }
+  
+    public static function delete($id){
+        $db = DB::getInstance();
+
+        $sql = "DELETE FROM livro WHERE id = :id";
+        $query = $db->prepare($sql);
+        $query->bindValue(":id",$id);
         $query->execute();
     }
 
-    public static function delete($id)
-    {
-        $db = DB::getInstance();
-        $sql = "DELETE FROM livro   WHERE id =: id";
-        $query = $db->prepare($sql);
-        $query->bindValue(":id", $id);
-        $query->execute();}
-
     public static function countByAutor($autor_id){
-            $db = DB::getInstance();
-            $sql= "SELECT  count(*) FROM livro WHERE autor_id=:autor_id";
-            $query=$db->prepare($sql);
-            $query->bindValue(":autor_id",$autor_id);
-            $query-> execute();
-            $row = $query->fetch(PDO::FETCH_ASSOC);
-            return $row["count(*)"];
+        $db = DB::getInstance();
 
-        }
-        public static function countByInclusaoFuncionario($inclusao_funcionario_id){
-            $db = DB::getInstance();
-    
-            $sql = 'SELECT count(*) FROM livro WHERE inclusao_funcionario_id = :inclusao_funcionario_id'; 
-    
-            $query = $db->prepare($sql);
-            $query->bindValue(":inclusao_funcionario_id",$inclusao_funcionario_id);
-            $query->execute();
-    
-            $row = $query->fetch(PDO::FETCH_ASSOC);
-            return $row["count(*)"];
-        }
-        public static function countByAlteracaoFuncionario($alteracao_funcionario_id){
-            $db = DB::getInstance();
-    
-            $sql = 'SELECT count(*) FROM livro WHERE alteracao_funcionario_id = :alteracao_funcionario_id'; 
-    
-            $query = $db->prepare($sql);
-            $query->bindValue(":alteracao_funcionario_id",$alteracao_funcionario_id);
-            $query->execute();
-    
-            $row = $query->fetch(PDO::FETCH_ASSOC);
-            return $row["count(*)"];
-        }
-        
+        $sql = "SELECT count(*) FROM livro WHERE autor_id = :autor_id";
+
+        $query = $db->prepare($sql);
+        $query->bindValue(":autor_id",$autor_id);
+        $query->execute();
+
+        $row = $query->fetch(PDO::FETCH_ASSOC);
+        return $row["count(*)"];
+
+    }
+
+    public static function countByInclusaoFuncionario($inclusao_funcionario_id){
+        $db = DB::getInstance();
+
+        $sql = 'SELECT count(*) FROM livro WHERE inclusao_funcionario_id = :inclusao_funcionario_id'; 
+
+        $query = $db->prepare($sql);
+        $query->bindValue(":inclusao_funcionario_id",$inclusao_funcionario_id);
+        $query->execute();
+
+        $row = $query->fetch(PDO::FETCH_ASSOC);
+        return $row["count(*)"];
+    }
+    public static function countByAlteracaoFuncionario($alteracao_funcionario_id){
+        $db = DB::getInstance();
+
+        $sql = 'SELECT count(*) FROM livro WHERE alteracao_funcionario_id = :alteracao_funcionario_id'; 
+
+        $query = $db->prepare($sql);
+        $query->bindValue(":alteracao_funcionario_id",$alteracao_funcionario_id);
+        $query->execute();
+
+        $row = $query->fetch(PDO::FETCH_ASSOC);
+        return $row["count(*)"];
+    }
 }

@@ -132,7 +132,9 @@ if (!Auth::isAuthenticated()) {
 
                             <td>
                                 <a href="livro_editar.php?id=<?php echo $livro->getId();?>"  class="btn btn-info">Editar</a>
-                                <a href="#" class="btn btn-danger">Deletar</a>
+                                <?php if(EmprestimoRepository::countByLivro($livro->getId()) == 0) { ?>
+                                <a href="livro_excluir.php?id=<?php echo $livro->getId(); ?>" class="btn btn-danger">Excluir</a>
+                                <?php } ?>
                             </td>
                         </tr>
                     <?php

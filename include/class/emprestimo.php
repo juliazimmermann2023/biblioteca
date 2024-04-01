@@ -1,90 +1,131 @@
 <?php
 
-class EmprestimoRepository implements Repository{
-    public static function listAll(){
-        $db = DB::getInstance();
-        $sql = "SELECT * FROM emprestimo WHERE id = :id";
-        $query = $db->prepare($sql);
-        $query->execute();
+class Emprestimo{
+    private $id;
+    private $livro_id;
+    private $cliente_id;
+    private $data_vencimento;
+    private $data_inclusao;
+    private $data_alteracao;
+    private $data_renovacao;
+    private $data_devolucao;
+    private $inclusao_funcionario_id;
+    private $alteracao_funcionario_id;
+    private $renovacao_funcionario_id;
+    private $devolucao_funcionario_id;
 
-        $list = array();
-        foreach($query->fetchAll(PDO::FETCH_OBJ) as  $row){
-            $emprestimo = new Emprestimo;
-            $emprestimo->setId($row->id);
-            $emprestimo->setLivroId($row->livro_id);
-            $emprestimo->setClienteId($row->cliente_id);
-            $emprestimo->setDataVencimento($row->data_vencimento);
-            $emprestimo->setDataInclusao($row->data_inclusao);
-            $emprestimo->setDataAlteracao($row->data_alteracao);
-            $emprestimo->setDataRenovacao($row->data_renovacao);
-            $emprestimo->setDataDevolucao($row->data_devolucao);
-            $emprestimo->setInclusaoFuncionarioId($row->inclusao_funcionario_id);
-            $emprestimo->setAlteracaoFuncionarioId($row->alteracao_funcionario_id);
-            $emprestimo->setRenovacaoFuncionarioId($row->renovacao_funcionario_id);
-            $emprestimo->setDevolucaoFuncionarioId($row->devolucao_funcionario_id);
-            $list[] = $emprestimo;
-        }
-        return $list;
+    public function getId(){
+        return $this->id;
     }
-    public static function get($id){
-        $db = DB::getInstance();
-        $sql = "SELECT * FROM emprestimo WHERE id = :id";
-        $query = $db->prepare($sql);
-        $query->bindParam(":id",$id);
-        $query->execute();
-    
-        if($query->rowCount() > 0){
-            $row = $query->fetch(PDO::FETCH_OBJ);
-            $emprestimo = new ;
-            $emprestimo->setId($row->id);
-            $emprestimo->setLivroId($row->livro_id);
-            $emprestimo->setClienteId($row->cliente_id);
-            $emprestimo->setDataVencimento($row->data_vencimento);
-            $emprestimo->setDataInclusao($row->data_inclusao);
-            $emprestimo->setDataAlteracao($row->data_alteracao);
-            $emprestimo->setDataRenovacao($row->data_renovacao);
-            $emprestimo->setDataDevolucao($row->data_devolucao);
-            $emprestimo->setInclusaoFuncionarioId($row->inclusao_funcionario_id);
-            $emprestimo->setAlteracaoFuncionarioId($row->alteracao_funcionario_id);
-            $emprestimo->setRenovacaoFuncionarioId($row->renovacao_funcionario_id);
-            $emprestimo->setDevolucaoFuncionarioId($row->devolucao_funcionario_id);
-            return $emprestimo;
-        };
+
+    public function setId($id){
+        $this->id = $id;
+    }
+
+    public function getLivroId(){
+        return $this->livro_id;
+    }
+
+    public function setLivroId($livro_id){
+        $this->livro_id = $livro_id;
+    }
+
+    public function getClienteId(){
+        return $this->cliente_id;
+    }
+
+    public function setClienteId($cliente_id){
+        $this->cliente_id = $cliente_id;
+    }
+    public function showDataVencimento($format = "Y-m-d"){
+        $datetime = DateTime::createFromFormat("Y-m-d",$this->data_vencimento);
+        return $datetime->format($format);
+    }
+    public function getDataVencimento(){
+        return $this->data_inclusao;
+    }
+
+    public function setDataVencimento($data_vencimento){
+        $this->data_vencimento = $data_vencimento;
+    }
+
+    public function getDataInclusao(){
+        return $this->data_inclusao;
+    }
+
+    public function setDataInclusao($data_inclusao){
+        $this->data_inclusao = $data_inclusao;
+    }
+
+    public function getDataAlteracao(){
+        return $this->data_alteracao;
+    }
+
+    public function setDataAlteracao($data_alteracao){
+        $this->data_alteracao = $data_alteracao;
+    }
+
+    public function getDataRenovacao($format = "Y-m-d"){
+        $datetime = DateTime::createFromFormat("Y-m-d",$this->data_renovacao);
+
+        if($datetime){
+            return $datetime->format($format);
+        }
         return null;
     }
-    public static function insert($obj){
-        $db = DB::getInstance() ;//cria uma instancia da classe db (conexão com o bd).]
-        $sql = "INSERT INTO emprestimo (livro_id, cliente_id, data_vencimento,  data_inclusao, inclusao_funcionario_id, devolucao_funcionario_id) VALUES(:livro_id, :cliente_id, :data_vencimento, :data_inclusao, :inclusao_funcionario_id, :devolucao_funcionario_id)";
 
-        $query = $db->prepare($sql);//prepara a query para ser executada.
-        $query->bindValue(":livro_id", $obj->getLivroId());
-        $query->bindValue(":cliente_id", $obj->getClienteId());
-        $query->bindValue(":data_vencimento", $obj->getDataVencimento());
-        $query->bindValue(":data_inclusao", $obj->getDataInclusao());
-        $query->bindValue(":inclusao_funcionario_id", $obj->getInclusaoFuncionarioId());
-        $query->bindValue(":devolucao_funcionario_id", $obj->getDevolucaoFuncionarioId());
-        $query->execute();
-        $id = $db->lastInsertId();//recupera o último Id inserido no BD.
-        return $id;
+    public function setDataRenovacao($data_renovacao){
+        $this->data_renovacao = $data_renovacao;
     }
-    public static function update($obj){
-        $db = DB::getInstance();
-        $sql = "UPDATE emprestimo SET data_vencimento = :data_vencimento, data_alteracao = :data_alteracao, data_renovacao = :data_renovacao, alteracao_funcionario_id = :alteracao_funcionario_id, renovacao_funcionario_id WHERE id = :id";
+    public function showDataDevolucao($format = "Y-m-d"){
+        $datetime = DateTime::createFromFormat("Y-m-d",$this->data_devolucao);
+        if($datetime){
+            return $datetime->format($format);
+        }
+        return null;
+    }
+    public function getDataDevolucao(){
+        return $this->data_devolucao;
+    }
 
-        $query = $db->prepare($sql);//prepara a query para ser executada.
-        $query->bindValue(':id', $obj->getId());
-        $query->bindValue(':data_vencimento' ,$obj->getDataVencimento());
-        $query->bindValue(':data_alteracao', $obj->getDataAlteracao());
-        $query->bindValue(':data_renovacao', $obj->getDataRenovacao());
-        $query->bindValue(':alteracao_funcionario_id', $obj->getAlteracaoFuncionarioId());
-        $query->bindValue(':renovacao_funcionario_id',  $obj->getRenovacaoFuncionarioId());
-        $query->execute();
+    public function setDataDevolucao($data_devolucao){
+        $this->data_devolucao = $data_devolucao;
     }
-    public static function delete($id){
-        $db = DB::getInstance();
-        $sql = "DELETE FROM autor WHERE id=:id";
-        $query=$db->prepare($sql);
-        $query->bindValue(":id",$id);
-        $query->execute();
+
+    public function getInclusaoFuncionarioId(){
+        return $this->inclusao_funcionario_id;
     }
+
+    public function setInclusaoFuncionarioId($inclusao_funcionario_id){
+        $this->inclusao_funcionario_id = $inclusao_funcionario_id;
+    }
+
+    public function getAlteracaoFuncionarioId(){
+        return $this->alteracao_funcionario_id;
+    }
+
+    public function setAlteracaoFuncionarioId($alteracao_funcionario_id){
+        $this->alteracao_funcionario_id = $alteracao_funcionario_id;
+    }
+
+    public function getRenovacaoFuncionarioId(){
+        return $this->renovacao_funcionario_id;
+    }
+
+    public function setRenovacaoFuncionarioId($renovacao_funcionario_id){
+        $this->renovacao_funcionario_id = $renovacao_funcionario_id;
+    }
+
+    public function getDevolucaoFuncionarioId(){
+        return $this->devolucao_funcionario_id;
+    }
+
+    public function setDevolucaoFuncionarioId($devolucao_funcionario_id){
+        $this->devolucao_funcionario_id = $devolucao_funcionario_id;
+    }
+    
+
 }
+
+
+?>

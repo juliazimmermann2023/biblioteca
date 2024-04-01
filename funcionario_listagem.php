@@ -103,7 +103,7 @@ if (!Auth::isAuthenticated()) {
             <li><a href="funcionario_listagem.php">Funcionários</a></li>
             <li><a href="cliente_listagem.php">Clientes</a></li>
             <li><a href="livro_listagem.php">Livros</a></li>
-            <li><a href="emprestimo.html">Empréstimos</a></li>
+            <li><a href="emprestimo_listagem.php">Empréstimos</a></li>
         </ul>
     </nav>
 
@@ -144,8 +144,10 @@ if (!Auth::isAuthenticated()) {
 
 
                             <td>
-                                <a href="funcionario_editar.php?id=<?php echo $funcionario->getId();?>" " class="btn btn-info">Editar</a>
-                                <a href="#" class="btn btn-danger">Deletar</a>
+                                <a href="funcionario_editar.php?id=<?php echo $funcionario->getId();?>"  class="btn btn-info">Editar</a>
+                                <?php if (EmprestimoRepository::countByInclusaoFuncionario($funcionario->getId()) == 0 && EmprestimoRepository::countByAlteracaoFuncionario($funcionario->getId()) == 0 && EmprestimoRepository::countByDevolucaoFuncionario($funcionario->getId()) == 0 && EmprestimoRepository::countByRenovacaoFuncionario($funcionario->getId()) == 0 && ClienteRepository::countByInclusaoFuncionario($funcionario->getId()) == 0 && ClienteRepository::countByAlteracaoFuncionario($funcionario->getId()) == 0 && AutorRepository::countByInclusaoFuncionario($funcionario->getId()) == 0 && AutorRepository::countByAlteracaoFuncionario($funcionario->getId()) == 0 && LivroRepository::countByInclusaoFuncionario($funcionario->getId()) == 0 && LivroRepository::countByAlteracaoFuncionario($funcionario->getId()) == 0) { ?>
+                                    <a href="funcionario_excluir.php?id=<?php echo $funcionario->getId(); ?>" class="btn btn-danger">Excluir</a>
+                                <?php } ?>
                             </td>
                         </tr>
                     <?php

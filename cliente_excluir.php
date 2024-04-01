@@ -22,7 +22,7 @@ if(!$cliente){
     exit();
 }
 
-if(EmprestimoRepository::countByClientes($cliente->getId()) > 0){
+if(EmprestimoRepository::countByCliente($cliente->getId()) > 0){
     header("location:  cliente_listagem.php");
     exit();
 }

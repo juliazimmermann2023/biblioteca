@@ -12,7 +12,7 @@ if (!Auth::isAuthenticated()) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NOVO CLIENTE > LISTAGEM</title>
+    <title>NOVO EMPRESTIMO > LISTAGEM</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 <style>
@@ -94,7 +94,14 @@ if (!Auth::isAuthenticated()) {
 <body>
 
 <?php include('include/menu.php'); ?>
-<div class="table-responsive">
+
+
+    <div class="container">
+        <div class="julia">
+            <h2>EMPRESTIMO > LISTAGEM</h2>
+            <a class="btn btn-info" href="emprestimo_novo.php">Adicionar um emprestimo</a>
+        </div>
+        <div class="table-responsive">
             <table class="table">
                 <thead>
 
@@ -102,8 +109,8 @@ if (!Auth::isAuthenticated()) {
                     <th>Livro</th>
                     <th>Cliente</th>
                     <th>Data Vencimento</th>
-                    <th>Data de Devolução</th>
-                    <th>Ações</th>
+                    <th>Data Devolução</th>
+                   
 
                 </thead>
                 <tbody>
@@ -123,13 +130,13 @@ if (!Auth::isAuthenticated()) {
                             <td><?php $cliente = ClienteRepository::get($emprestimo->getClienteId());
                                 echo $emprestimo->getClienteId() . " - " . $cliente->getNome(); ?>
                             </td>
-                            <td><?php echo $emprestimo->getDataVencimento("d/m/Y"); ?> </td>
-                            <td><?php echo $emprestimo->getDataDevolucao(); ?> </td>
+                            <td><?php echo $emprestimo->showDataVencimento("d/m/Y"); ?> </td>
+                            <td><?php echo $emprestimo->showDataDevolucao("d/m/Y"); ?> </td>
 
                             <td>
-                                <a href="emprestimo.editar.php" class="btn btn-info">Editar</a>
+                                <a href="emprestimo_editar.php" class="btn btn-info">Editar</a>
 
-                                <a href="#" class="btn btn-danger">Deletar</a>
+                              
 
 
                             </td>
@@ -141,6 +148,8 @@ if (!Auth::isAuthenticated()) {
                 </tbody>
             </table>
         </div>
+        </div>
     </div>
 </body>
+
 </html>

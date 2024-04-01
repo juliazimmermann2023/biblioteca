@@ -2,8 +2,7 @@
 
 class EmprestimoRepository implements repository
 {
-    public static function listAll()
-    {
+    public static function listAll(){
         $db = DB::getInstance();
 
         $sql = "SELECT * from emprestimo";
@@ -12,7 +11,7 @@ class EmprestimoRepository implements repository
         $query->execute();
 
         $list = array();
-        foreach ($query->fetchALL(PDO::FETCH_OBJ) as $row) {
+        foreach($query->fetchALL(PDO::FETCH_OBJ) as $row){
             $emprestimo = new Emprestimo;
             $emprestimo->setId($row->id);
             $emprestimo->setLivroId($row->livro_id);
@@ -29,12 +28,13 @@ class EmprestimoRepository implements repository
             $list[] = $emprestimo;
         }
         return $list;
+
     }
     public static function get($id)
     {
         $db = DB::getInstance();
 
-        $sql = "SELECT * from emprestimo where id = :id";
+        $sql = "SELECT * from autor where id = :id";
 
         $query = $db->prepare($sql);
         $query->bindParam("id", $id);
@@ -61,20 +61,19 @@ class EmprestimoRepository implements repository
         }
         return null;
     }
-    public static function insert($obj)
-    {
+    public static function insert($obj){
         $db = DB::getInstance();
 
-        $sql = "INSERT INTO emprestimo (livro_id, cliente_id, data_vencimento, data_devolucao, data_inclusao, inclusao_funcionario_id) VALUES(:livro_id, :cliente_id, :data_vencimento, :data_devolucao, :data_inclusao, :inclusao_funcionario_id)";
+        $sql = "INSERT INTO emprestimo (livro_id, cliente_id, data_vencimento,  data_inclusao, inclusao_funcionario_id) VALUES(:livro_id, :cliente_id, :data_vencimento,:data_inclusao, :inclusao_funcionario_id)";
 
         $query = $db->prepare($sql);
 
-        $query->bindValue(":livro_id", $obj->getLivroId());
-        $query->bindValue(":cliente_id", $obj->getClienteId());
-        $query->bindValue(":data_vencimento", $obj->getDataVencimento());
-        $query->bindValue(":data_devolucao", $obj->getDataDevolucao());
-        $query->bindValue(":data_inclusao", $obj->getDataInclusao());
-        $query->bindValue(":inclusao_funcionario_id", $obj->getInclusaoFuncionarioId());
+        $query->bindValue(":livro_id",$obj->getLivroId());
+        $query->bindValue(":cliente_id",$obj->getClienteId());
+        $query->bindValue(":data_vencimento",$obj->getDataVencimento());
+       
+        $query->bindValue(":data_inclusao",$obj->getDataInclusao());
+        $query->bindValue(":inclusao_funcionario_id",$obj->getInclusaoFuncionarioId());
 
         $query->execute();
 
@@ -82,30 +81,105 @@ class EmprestimoRepository implements repository
 
         return $id;
     }
-
-    public static function update($obj)
-    {
+ 
+    public static function update($obj){
         $db = DB::getInstance();
 
         $sql = "UPDATE emprestimo SET livro_id = :livro_id, data_alteracao = :data_alteracao, data_renovacao = :data_renovacao, alteracao_funcionario_id = :alteracao_funcionario_id Where id = :id";
 
         $query = $db->prepare($sql);
-        $query->bindValue(":livro_id", $obj->getLivroId());
-        $query->bindValue(":data_renovacao", $obj->getDataRenovacao());
-        $query->bindValue(":data_alteracao", $obj->getDataAlteracao());
-        $query->bindValue(":alteracao_funcionario_id", $obj->getAlteracaoFuncionarioId());
-        $query->bindValue(":inclusao_funcionario_id", $obj->getInclusaoFuncionario());
-        $query->bindValue(":id", $obj->getId());
+        $query->bindValue(":livro_id",$obj->getLivroId());
+        $query->bindValue(":data_renovacao",$obj->getDataRenovacao());
+        $query->bindValue(":data_alteracao",$obj->getDataAlteracao());
+        $query->bindValue(":alteracao_funcionario_id",$obj->getAlteracaoFuncionarioId());
+        $query->bindValue(":id",$obj->getId());
+        $query->execute();
+    }
+  
+    public static function delete($id){
+        $db = DB::getInstance();
+
+        $sql = "DELETE FROM emprestimo WHERE id = :id";
+        $query = $db->prepare($sql);
+        $query->bindValue(":id",$id);
         $query->execute();
     }
 
-    public static function delete($id)
-    {
+    public static function countByCliente($cliente_id){
         $db = DB::getInstance();
-        $sql = "DELETE FROM emprestimo  WHERE id =: id";
+
+        $sql = "SELECT count(*) FROM emprestimo WHERE cliente_id = :cliente_id";
+
         $query = $db->prepare($sql);
-        $query->bindValue(":id", $id);
+        $query->bindValue(":cliente_id",$cliente_id);
         $query->execute();
+
+        $row = $query->fetch(PDO::FETCH_ASSOC);
+        return $row["count(*)"];
+
     }
-    
+
+    public static function countByLivro($livro_id){
+        $db = DB::getInstance();
+
+        $sql = "SELECT count(*) FROM emprestimo WHERE livro_id = :livro_id";
+
+        $query = $db->prepare($sql);
+        $query->bindValue(":livro_id",$livro_id);
+        $query->execute();
+
+        $row = $query->fetch(PDO::FETCH_ASSOC);
+        return $row["count(*)"];
+
+    }
+
+    public static function countByInclusaoFuncionario($inclusao_funcionario_id){
+        $db = DB::getInstance();
+
+        $sql = 'SELECT count(*) FROM emprestimo WHERE inclusao_funcionario_id = :inclusao_funcionario_id'; 
+
+        $query = $db->prepare($sql);
+        $query->bindValue(":inclusao_funcionario_id",$inclusao_funcionario_id);
+        $query->execute();
+
+        $row = $query->fetch(PDO::FETCH_ASSOC);
+        return $row["count(*)"];
+    }
+    public static function countByAlteracaoFuncionario($alteracao_funcionario_id){
+        $db = DB::getInstance();
+
+        $sql = 'SELECT count(*) FROM emprestimo WHERE alteracao_funcionario_id = :alteracao_funcionario_id'; 
+
+        $query = $db->prepare($sql);
+        $query->bindValue(":alteracao_funcionario_id",$alteracao_funcionario_id);
+        $query->execute();
+
+        $row = $query->fetch(PDO::FETCH_ASSOC);
+        return $row["count(*)"];
+    }
+    public static function countByRenovacaoFuncionario($renovacao_funcionario_id){
+        $db = DB::getInstance();
+
+        $sql = 'SELECT count(*) FROM emprestimo WHERE renovacao_funcionario_id = :renovacao_funcionario_id'; 
+
+        $query = $db->prepare($sql);
+        $query->bindValue(":renovacao_funcionario_id",$renovacao_funcionario_id);
+        $query->execute();
+
+        $row = $query->fetch(PDO::FETCH_ASSOC);
+        return $row["count(*)"];
+    }
+
+    public static function countByDevolucaoFuncionario($devolucao_funcionario_id){
+        $db = DB::getInstance();
+
+        $sql = 'SELECT count(*) FROM emprestimo WHERE devolucao_funcionario_id = :devolucao_funcionario_id'; 
+
+        $query = $db->prepare($sql);
+        $query->bindValue(":devolucao_funcionario_id",$devolucao_funcionario_id);
+        $query->execute();
+
+        $row = $query->fetch(PDO::FETCH_ASSOC);
+        return $row["count(*)"];
+    }
 }

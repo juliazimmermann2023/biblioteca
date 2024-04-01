@@ -22,7 +22,7 @@ if(!$livro){
     exit();
 }
 
-if(EmprestimoRepository::countByLivros($livro->getId()) > 0){
+if(EmprestimoRepository::countByLivro($livro->getId()) > 0){
     header("location: livro_listagem.php");
     exit();
 }
