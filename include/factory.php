@@ -28,7 +28,10 @@ class Factory
         return new Livro();
     }
     public static function emprestimo()
-    {
+    { $emprestimo = new Emprestimo();
+        $datetime= new DateTime();
+        $datetime->add(new DateInterval("P7D"));
+        $emprestimo->setDataVencimento($datetime->format("Y-m-d"));
         return new Emprestimo();
     }
     public static function cliente()

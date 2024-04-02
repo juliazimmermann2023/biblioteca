@@ -32,7 +32,7 @@ $cliente->setDataInclusao(date("Y-m-d H:i:s"));
 $cliente_retorno = ClienteRepository::insert($cliente);
 
 if ($cliente_retorno > 0){
-    header("location: cliente.editar.php?id=".$cliente_retorno);
+    header("location: cliente_editar.php?id=".$cliente_retorno);
     exit();
 }
 

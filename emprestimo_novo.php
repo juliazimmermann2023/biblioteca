@@ -146,5 +146,11 @@ if (!Auth::isAuthenticated()) {
     </div>
 </body>
 <script>"https://code.jquery.com/jquery-3.7.1.min.js"</script>
-<script> $(document).ready (function)
+<script src="js/jQuery-Mask-Plugin-master"></script>
+<script src="js/jquery.mask.min.js"></script>
+<script>
+$(document).ready(function(){
+        $('.vencimento').mask('00/00/0000');
+    })
+</script>
 </html>
