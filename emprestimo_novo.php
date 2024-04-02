@@ -145,3 +145,6 @@ if (!Auth::isAuthenticated()) {
         </div>
     </div>
 </body>
+<script>"https://code.jquery.com/jquery-3.7.1.min.js"</script>
+<script> $(document).ready (function)
+</html>
