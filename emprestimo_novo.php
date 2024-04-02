@@ -102,7 +102,7 @@ if (!Auth::isAuthenticated()) {
     <div class="container">
 
         <h1>Novo > empréstimo</h1>
-        <a href="emprestimo_listagem.php" class="btn btn-warning">VOLTAR</a>
+    
         <div class="row mt-4">
             <div class="col-md-12">
             <form action="emprestimo_novo_post.php" method="POST">
@@ -111,12 +111,11 @@ if (!Auth::isAuthenticated()) {
                         <select name="livro_id" id="livro">
                             <?php
                             foreach (LivroRepository::listAll() as $livro) {
-                                if(EmprestimoRepository::countByLivro($livro->getId()) == 0){
                             ?> 
                                 <option value="<?php echo $livro->getId(); ?>">
                                     <?php echo $livro->getTitulo() ?>
                                 </option>
-                            <?php }} ?>
+                            <?php } ?>
                         </select>
 <br>
 <br>
@@ -124,12 +123,11 @@ if (!Auth::isAuthenticated()) {
                         <select name="cliente_id" id="cliente">
                             <?php
                             foreach (ClienteRepository::listAll() as $cliente) {
-                                if(EmprestimoRepository::countByCliente($cliente->getId()) == 0){
                             ?>
                                 <option value="<?php echo $cliente->getId(); ?>">
                                     <?php echo $cliente->getNome() ?>
                                 </option>
-                            <?php }} ?>
+                            <?php } ?>
                         </select>
                         <br>
                     <label for="nome" class="form-label" style="color: black;">Data Vencimento</label>
@@ -144,6 +142,7 @@ if (!Auth::isAuthenticated()) {
             </div>
         </div>
     </div>
+
 </body>
 <script>"https://code.jquery.com/jquery-3.7.1.min.js"</script>
 <script src="js/jQuery-Mask-Plugin-master"></script>

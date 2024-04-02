@@ -110,7 +110,7 @@ if (!Auth::isAuthenticated()) {
                     <th>Cliente</th>
                     <th>Data Vencimento</th>
                     <th>Data Devolução</th>
-                   
+                    <th>Ações</th>
 
                 </thead>
                 <tbody>
@@ -132,15 +132,18 @@ if (!Auth::isAuthenticated()) {
                             </td>
                             <td><?php echo $emprestimo->showDataVencimento("d/m/Y"); ?> </td>
                             <td><?php echo $emprestimo->showDataDevolucao("d/m/Y"); ?> </td>
-
                             <td>
-                                <a href="emprestimo_editar.php" class="btn btn-info">Editar</a>
-
-                              
-
-
-                            </td>
+                                <?php if(
+                                    $emprestimo->getDataRenovacao()==null&&
+                                    $emprestimo->getDataDevolucao()==null&&
+                                    $emprestimo->getDataAlteracao()==null
+                                    
+                                ){?>
+                            <a href="emprestimo_excluir.php?id=<?php echo $emprestimo->getId(); ?>" class="btn btn-danger">Excluir</a>
+                            <?php } ?>
+                        </td>
                         </tr>
+                        
                     <?php
                     }
                     ?>

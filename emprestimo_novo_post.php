@@ -8,40 +8,37 @@ if (!Auth::isAuthenticated()) {
 
 $user = Auth::getUser();
 
-if(!isset($_POST['id'])){
-    header("location: funcionario_listagem.php?1");
+if(!isset($_POST['data_vencimento'])){
+    header("Location: emprestimo_novo.php");
     exit();
 }
-if($_POST["id"] == "" || $_POST["id"] == NULL){
-    header("location: funcionario_listagem.php?2");
+if($_POST["data_vencimento" ] == '' || $_POST["data_vencimento" ] == null){
+    header("Location: emprestimo_novo.php");
     exit();
 }
-$funcionario = FuncionarioRepository::get($_POST["id"]);
-if(!$funcionario){
-    header("location: funcionario_listagem.php?3");
-    exit();
-}
-
-if(!isset($_POST['nome'])){
-    header("Location: funcionario_novo.php?id=".$funcionario->getId());
-    exit();
-}
-if($_POST["nome" ] == "" || $_POST["nome" == null]){
-    header("Location: funcionario_novo.php?id=".$funcionario->getId());
+if(
+    EmprestimoRepository::countByCliente($_POST["cliente_id"])> 0
+    ||
+    EmprestimoRepository::countByLivro($_POST["livro_id"])> 0
+){
+    header("location:emprestimo_novo.php");
     exit();
 }
 
+$emprestimo = Factory::emprestimo();
 
+$emprestimo->setLivroId($_POST['livro_id']);
+$emprestimo->setClienteId($_POST['cliente_id']);
+$emprestimo->setDataVencimento($_POST['data_vencimento']);
+$emprestimo->setInclusaoFuncionarioId($user->getID());
+$emprestimo->setDataInclusao(date('Y-d-m h:i:s'));
 
-$funcionario->setNome($_POST['nome']);
-$funcionario->setCpf($_POST['cpf']);
-$funcionario->setTelefone($_POST['telefone']);
-$funcionario->setEmail($_POST['email']);
-$funcionario->setAlteracaoFuncionarioId($user->getID());
-$funcionario->setDataAlteracao(date('Y-d-m H:i:s'));
+$emprestimo_retorno = EmprestimoRepository::insert($emprestimo);
 
-FuncionarioRepository::update($funcionario);
+if($emprestimo_retorno > 0){
+    header("Location: emprestimo_listagem.php");
+    exit();
+}
 
-
-header("location:funcionario_editar.php?id=".$funcionario->getId());
- 
+header("Location: emprestimo_novo.php");
+ exit();

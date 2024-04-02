@@ -136,7 +136,7 @@ if (!Auth::isAuthenticated()) {
                             <td>
                                 <a href="cliente_editar.php?id=<?php echo $cliente->getId();?>" class="btn btn-info">Editar</a>
                                 <?php if (EmprestimoRepository::countByCliente($cliente->getId())==0){?>
-                                <a href="cliente_excluir.php" class="btn btn-danger">Deletar</a>
+                                <a href="cliente_excluir.php?id=<?php echo $cliente->getId();?>" class="btn btn-danger">Deletar</a>
                                <?php } ?>
                             </td>
                         </tr>
