@@ -37,12 +37,14 @@ class Emprestimo{
     public function setClienteId($cliente_id){
         $this->cliente_id = $cliente_id;
     }
+
     public function showDataVencimento($format = "Y-m-d"){
         $datetime = DateTime::createFromFormat("Y-m-d",$this->data_vencimento);
         return $datetime->format($format);
     }
+    
     public function getDataVencimento(){
-        return $this->data_inclusao;
+        return $this->data_vencimento;
     }
 
     public function setDataVencimento($data_vencimento){

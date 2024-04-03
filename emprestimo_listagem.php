@@ -114,41 +114,35 @@ if (!Auth::isAuthenticated()) {
 
                 </thead>
                 <tbody>
-
-                    <?php
-                    foreach (EmprestimoRepository::listAll() as $emprestimo) {
+              <?php
+              foreach(EmprestimoRepository::listAll() as $empres){
+              ?>
+              <tr>
+                <td><?php echo $empres->getId(); ?></td>
+                <td><?php 
+                        $livro = LivroRepository::get($empres->getLivroId());
+                        echo $empres->getLivroId()." - ". $livro->getTitulo(); 
                     ?>
-
-                        <tr>
-                            <td><?php echo $emprestimo->getId(); ?></td>
-                            <td>
-                                <?php $livro = LivroRepository::get($emprestimo->getLivroId());
-                                echo $emprestimo->getLivroId() . " - " . $livro->getTitulo(); ?>
-
-                            </td>
-
-                            <td><?php $cliente = ClienteRepository::get($emprestimo->getClienteId());
-                                echo $emprestimo->getClienteId() . " - " . $cliente->getNome(); ?>
-                            </td>
-                            <td><?php echo $emprestimo->showDataVencimento("d/m/Y"); ?> </td>
-                            <td><?php echo $emprestimo->showDataDevolucao("d/m/Y"); ?> </td>
-                            <td>
-                                <?php if(
-                                    $emprestimo->getDataRenovacao()==null&&
-                                    $emprestimo->getDataDevolucao()==null&&
-                                    $emprestimo->getDataAlteracao()==null
-                                    
-                                ){?>
-                            <a href="emprestimo_excluir.php?id=<?php echo $emprestimo->getId(); ?>" class="btn btn-danger">Excluir</a>
-                            <?php } ?>
-                        </td>
-                        </tr>
-                        
-                    <?php
-                    }
+                </td>
+                <td>
+                    <?php 
+                        $cliente = ClienteRepository::get($empres->getClienteId());
+                        echo $empres->getClienteId()." - ". $cliente->getNome(); 
                     ?>
+                </td>
+                <td><?php echo $empres->getDataVencimento(); ?></td>
+                <td><?php echo $empres->showDataDevolucao("d/m/Y"); ?></td>
+                <td>
+                  <?php if(EmprestimoRepository::countByDataAlteracao($empres->getId()) == null && EmprestimoRepository::countByDataDevolucao($empres->getId()) == null && EmprestimoRepository::countByDataAlteracao($empres->getId()) == null){ ?>
+                  <a href="emprestimo_excluir.php?id=<?php echo $empres->getId(); ?>" id="excluir">Excluir</a>
+                  <?php } ?>
+                </td>
 
-                </tbody>
+              </tr>
+              <?php
+              }
+              ?>
+          </tbody>
             </table>
         </div>
         </div>

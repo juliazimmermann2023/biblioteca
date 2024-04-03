@@ -32,7 +32,7 @@ class Factory
         $datetime= new DateTime();
         $datetime->add(new DateInterval("P7D"));
         $emprestimo->setDataVencimento($datetime->format("Y-m-d"));
-        return new Emprestimo();
+        return $emprestimo;
     }
     public static function cliente()
     {
