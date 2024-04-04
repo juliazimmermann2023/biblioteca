@@ -76,7 +76,7 @@ if (Auth::isAuthenticated()) {
             <button type="submit" class="btn"> Entrar</button>
         </form>
     </div>
-
+   
 </body>
 
 </html>

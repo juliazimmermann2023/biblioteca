@@ -37,7 +37,7 @@ $emprestimo = Factory::emprestimo();
 
 $emprestimo->setLivroId($_POST["livro_id"]);
 $emprestimo->setClienteId($_POST["cliente_id"]);
-$emprestimo->setDataVencimento($_POST["data_vencimento"]);
+// $emprestimo->setDataVencimento($_POST["data_vencimento"]);
 $emprestimo->setInclusaoFuncionarioId($user->getId());
 $emprestimo->setDataInclusao(date("Y-m-d h:i:s"));
 

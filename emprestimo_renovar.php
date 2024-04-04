@@ -5,6 +5,8 @@ if (!Auth::isAuthenticated()) {
     header("Location: login.php");
     exit();
 }
+
+$emprestimo = Factory::emprestimo();
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -104,36 +106,38 @@ if (!Auth::isAuthenticated()) {
     <div class="container">
 
         <h1>Novo > empréstimo</h1>
-        <a href="emprestimo_listagem.php" class="btn btn-warning">VOLTAR</a>
+    
         <div class="row mt-4">
             <div class="col-md-12">
             <form action="emprestimo_novo_post.php" method="POST">
                 <div class="mb-3">
                 <label for="livro" class="form-label">Livro:</label>
-                        <select name="livro_id" id="livro">
-                            <?php
-                            foreach (LivroRepository::listAll() as $livro) {
-                            ?> 
-                                <option value="<?php echo $livro->getId(); ?>">
-                                    <?php echo $livro->getTitulo() ?>
-                                </option>
-                            <?php } ?>
-                        </select>
+                <select name="livro_id" id="livro" required>
+                                    <?php
+                                        foreach(LivroRepository::listAll() as $livro){
+                                            if(EmprestimoRepository::countByLivro($livro->getId()) == 0){
+                                    ?>
+                                        <option value="<?php echo $livro->getId();?>">
+                                            <?php echo $livro->getTitulo(); ?>
+                                        </option>
+                                    <?php }} ?>
+                                </select>
 <br>
 <br>
                     <label for="cliente" class="form-label">Clientes:</label>
-                        <select name="cliente_id" id="cliente">
-                            <?php
-                            foreach (ClienteRepository::listAll() as $cliente) {
-                            ?>
-                                <option value="<?php echo $cliente->getId(); ?>">
-                                    <?php echo $cliente->getNome() ?>
-                                </option>
-                            <?php } ?>
-                        </select>
+                    <select name="cliente_id" id="cliente" required>
+                                    <?php
+                                        foreach(ClienteRepository::listAll() as $cliente){
+                                            if(EmprestimoRepository::countByCliente($cliente->getId()) == 0){
+                                    ?>
+                                        <option value="<?php echo $cliente->getId();?>">
+                                            <?php echo $cliente->getNome(); ?>
+                                        </option>
+                                    <?php }} ?>
+                                </select>
                         <br>
-                    <label for="nome" class="form-label" style="color: black;">Data Vencimento</label>
-                    <input type="text" name="data_vencimento" class="form-control" id="livro">
+                    <label for="vencimento" class="form-label" style="color: black;"> Nova Data Vencimento</label>
+                    <input type="text" name="data_vencimento" class="form-control data_vencimento" id="vencimento" disabled value="<?php echo $emprestimo->showDataVencimento("d/m/Y"); ?>">
 
                 </div>
                 <div class="mb-3">  
@@ -144,4 +148,13 @@ if (!Auth::isAuthenticated()) {
             </div>
         </div>
     </div>
+
 </body>
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script src="js/jquery.mask.min.js"></script>
+<script>
+$(document).ready(function(){
+        $('.data_vencimento').mask('00/00/0000');
+    })
+</script>
+</html>

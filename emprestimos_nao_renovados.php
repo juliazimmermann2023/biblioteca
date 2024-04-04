@@ -100,8 +100,8 @@ $emprestimo = Factory::emprestimo();
 
 
     <div class="container">
-        <div class="julia">
-            <h2>EMPRÉTIMO > LISTAGEM</h2>
+    <div class="julia">
+            <h2>EMPRESTIMO > LISTAGEM</h2>
             <a class="btn" href="emprestimos_ativos.php">Ativo</a>
             <a class="btn" href="emprestimos_devolvidos.php">Devolvidos</a>
             <a class="btn " href="emprestimos_nao_renovados.php">Não renovados</a>
@@ -123,7 +123,7 @@ $emprestimo = Factory::emprestimo();
                 </thead>
                 <tbody>
               <?php
-              foreach(EmprestimoRepository::listAll() as $emprestimo){
+              foreach(EmprestimoRepository::listNotRenovac() as $emprestimo){
               ?>
               <tr>
                 <td><?php echo $emprestimo->getId(); ?></td>
@@ -142,7 +142,7 @@ $emprestimo = Factory::emprestimo();
                 <td><?php echo $emprestimo->showDataDevolucao("d/m/Y"); ?></td>
                 <td>
                   <?php if(EmprestimoRepository::countByDataAlteracao($emprestimo->getId()) == null && EmprestimoRepository::countByDataDevolucao($emprestimo->getId()) == null && EmprestimoRepository::countByDataAlteracao($emprestimo->getId()) == null){ ?>
-                  <a class="btn btn-info" href="emprestimo_excluir.php?id=<?php echo $emprestimo->getId(); ?>" id="excluir">Excluir</a>
+                  <a href="emprestimo_excluir.php?id=<?php echo $emprestimo->getId(); ?>" id="excluir">Excluir</a>
                   <?php } ?>
                 </td>
 

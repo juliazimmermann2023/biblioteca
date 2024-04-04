@@ -5,6 +5,8 @@ if (!Auth::isAuthenticated()) {
     header("Location: login.php");
     exit();
 }
+
+$emprestimo = Factory::emprestimo();
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -14,6 +16,8 @@ if (!Auth::isAuthenticated()) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NOVO EMPRÉSTIMO</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style/menu.css">
 </head>
 <style>
     * {
@@ -133,7 +137,7 @@ if (!Auth::isAuthenticated()) {
                                 </select>
                         <br>
                     <label for="vencimento" class="form-label" style="color: black;">Data Vencimento</label>
-                    <input type="text" name="data_vencimento" class="form-control data_vencimento" id="vencimento">
+                    <input type="text" name="data_vencimento" class="form-control data_vencimento" id="vencimento" disabled value="<?php echo $emprestimo->showDataVencimento("d/m/Y"); ?>">
 
                 </div>
                 <div class="mb-3">  
