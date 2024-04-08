@@ -20,7 +20,7 @@ if (!Auth::isAuthenticated()) {
 <body>
 <?php include('include/menu.php'); ?>
 
-<img src="https://media0.giphy.com/media/xLpr05o0hieufKfQI6/giphy.gif?cid=6c09b952izrkst2x6vwo1b9retjvs8pxs9f2i0o5uefpijs6&ep=v1_internal_gif_by_id&rid=giphy.gif&ct=s">
+<img src="https://i.pinimg.com/originals/55/d1/40/55d14007f36dcb3a6d1f0947427b412b.gif" class="center-image">
 </body>
 
 </html>

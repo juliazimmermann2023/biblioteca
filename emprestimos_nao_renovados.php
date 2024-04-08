@@ -101,7 +101,7 @@ $emprestimo = Factory::emprestimo();
 
     <div class="container">
     <div class="julia">
-            <h2>EMPRESTIMO > LISTAGEM</h2>
+            <h2>EMPRÉSTIMOS > NÃO RENOVADOS </h2>
             <a class="btn" href="emprestimos_ativos.php">Ativo</a>
             <a class="btn" href="emprestimos_devolvidos.php">Devolvidos</a>
             <a class="btn " href="emprestimos_nao_renovados.php">Não renovados</a>
@@ -142,7 +142,7 @@ $emprestimo = Factory::emprestimo();
                 <td><?php echo $emprestimo->showDataDevolucao("d/m/Y"); ?></td>
                 <td>
                   <?php if(EmprestimoRepository::countByDataAlteracao($emprestimo->getId()) == null && EmprestimoRepository::countByDataDevolucao($emprestimo->getId()) == null && EmprestimoRepository::countByDataAlteracao($emprestimo->getId()) == null){ ?>
-                  <a href="emprestimo_excluir.php?id=<?php echo $emprestimo->getId(); ?>" id="excluir">Excluir</a>
+                    <a class="btn btn-danger" href="emprestimo_excluir.php?id=<?php echo $emprestimo->getId(); ?>" id="excluir">Excluir</a>
                   <?php } ?>
                 </td>
 

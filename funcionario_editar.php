@@ -24,7 +24,7 @@ if(!$funcionario){
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EDITAR CLIENTE</title>
+    <title>EDITAR FUNCIONÁRIO</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="style/menu.css">
@@ -133,9 +133,10 @@ if(!$funcionario){
                         <label for="nome" class="form-label">Email</label>
                         <input type="text" name="email" id="nome" class="form-control" name="id" value="<?php echo $funcionario->getEmail()?>">
 
-                       
+                        
                     
                     </div>
+                    <a type="button" class="btn btn-info" href="funcionario_senha.php">Alterar senha</a>
                     <div class="mb-3">
                         <input type="hidden" name="id" value="<?php echo $funcionario->getId()?>">
                         <button type="submit" class="btn btn-info">ENVIAR</button>

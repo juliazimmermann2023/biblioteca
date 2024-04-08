@@ -12,7 +12,7 @@ if (!Auth::isAuthenticated()) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NOVO FUNCIONÁRIO</title>
+    <title>FUNCIONÁRIO > LISTAGEM</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="style/menu.css">
 </head>
@@ -37,6 +37,7 @@ if (!Auth::isAuthenticated()) {
                         <th>Telefone</th>
                         <th>Email</th>
                         <th>Cpf</th>
+                        <th>Ações</th>
 
 
 

@@ -2,11 +2,15 @@
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 
 <nav>
-    <header>
+<header>
+    <div class="header-item">
         <a href="logout.php">Sair</a>
+        <a href="index.php">Home</a>
+    </div>
+    
         <h1>Bem-vindo à Biblioteca Virtual</h1>
-    </header>
-
+    
+</header>
     <!-- Example single danger button -->
     <div class="cachoro">
         <div class="pato">

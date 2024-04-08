@@ -101,7 +101,7 @@ $emprestimo = Factory::emprestimo();
 
     <div class="container">
     <div class="julia">
-            <h2>EMPRESTIMO > LISTAGEM</h2>
+            <h2>EMPRÉSTIMOS > RENOVADOS</h2>
             <a class="btn" href="emprestimos_ativos.php">Ativo</a>
             <a class="btn" href="emprestimos_devolvidos.php">Devolvidos</a>
             <a class="btn " href="emprestimos_nao_renovados.php">Não renovados</a>

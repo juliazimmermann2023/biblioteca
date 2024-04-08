@@ -12,7 +12,7 @@ if (!Auth::isAuthenticated()) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NOVO CLIENTE > LISTAGEM</title>
+    <title>CLIENTE > LISTAGEM</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="style/menu.css">
@@ -114,6 +114,7 @@ if (!Auth::isAuthenticated()) {
                         <th>Cpf</th>
                         <th>Rg</th>
                         <th>Data Nascimento</th>
+                        <th>Ações</th>
 
 
 
@@ -132,15 +133,17 @@ if (!Auth::isAuthenticated()) {
                             <td><?php echo $cliente->getEmail(); ?></td>
                             <td><?php echo $cliente->getCpf(); ?></td>
                             <td><?php echo $cliente->getRg(); ?></td>
-                            <td><?php echo $cliente->getDataNascimento(); ?></td>
+                          
 
-
+                            <td><?php echo $cliente->getDataNascimento("d/m/Y");?></td>
                             <td>
+
                                 <a href="cliente_editar.php?id=<?php echo $cliente->getId();?>" class="btn btn-info">Editar</a>
                                 <?php if (EmprestimoRepository::countByCliente($cliente->getId())==0){?>
                                 <a href="cliente_excluir.php?id=<?php echo $cliente->getId();?>" class="btn btn-danger">Deletar</a>
                                <?php } ?>
                             </td>
+                            
                         </tr>
                     <?php
                     }

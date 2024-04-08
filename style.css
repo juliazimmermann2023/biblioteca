@@ -58,5 +58,11 @@ ul {
     background-color: pink;
     padding: 10px 20px;
     border-radius: 10px;
+}
 
+/* Centralizar imagem */
+.center-image {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
 }

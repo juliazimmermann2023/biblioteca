@@ -33,7 +33,7 @@ if (!isset($_POST["nome"])){
 }
 
 if( $_POST["nome"] == "" || $_POST ["nome"] == null){
-    header("location: funcionarios.editar.php");
+    header("location: funcionarios_editar.php");
     
     exit();
 }
