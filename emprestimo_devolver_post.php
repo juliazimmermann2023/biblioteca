@@ -30,7 +30,7 @@ $novo_emprestimo = Factory::emprestimo();
 
 $emprestimo->setDataAlteracao(date('Y-m-d'));
 $emprestimo->setAlteracaoFuncionarioId($user->getId());
-$emprestimo->setRenovacaoFuncionarioId($user->getId());
+$emprestimo->setDevolucaoFuncionarioId($user->getId());
 $emprestimo->setDataVencimento($novo_emprestimo->getDataVencimento());
 $emprestimo->setDataDevolucao($date('d/m/Y'));
 
