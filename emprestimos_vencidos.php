@@ -122,34 +122,46 @@ $emprestimo = Factory::emprestimo();
 
                 </thead>
                 <tbody>
-              <?php
-              foreach(EmprestimoRepository::listVencido() as $emprestimo){
-              ?>
-              <tr>
-                <td><?php echo $emprestimo->getId(); ?></td>
-                <td><?php 
-                        $livro = LivroRepository::get($emprestimo->getLivroId());
-                        echo $emprestimo->getLivroId()." - ". $livro->getTitulo(); 
+                <?php
+                    foreach (EmprestimoRepository::listVencido() as $emprestimo) {
                     ?>
-                </td>
-                <td>
-                    <?php 
-                        $cliente = ClienteRepository::get($emprestimo->getClienteId());
-                        echo $emprestimo->getClienteId()." - ". $cliente->getNome(); 
-                    ?>
-                </td>
-                <td><?php echo $emprestimo->showDataVencimento("d/m/Y");?></td>
-                <td><?php echo $emprestimo->showDataDevolucao("d/m/Y"); ?></td>
-                <td>
-                  <?php if(EmprestimoRepository::countByDataAlteracao($emprestimo->getId()) == null && EmprestimoRepository::countByDataDevolucao($emprestimo->getId()) == null && EmprestimoRepository::countByDataAlteracao($emprestimo->getId()) == null){ ?>
-                  <a href="emprestimo_excluir.php?id=<?php echo $emprestimo->getId(); ?>" id="excluir">Excluir</a>
-                  <?php } ?>
-                </td>
 
-              </tr>
-              <?php
-              }
-              ?>
+                        <tr>
+                            <td><?php echo $emprestimo->getId(); ?></td>
+                            <td>
+                                <?php $livro = LivroRepository::get($emprestimo->getLivroId());
+                                echo $emprestimo->getLivroId() . " - " . $livro->getTitulo(); ?>
+
+                            </td>
+
+                            <td><?php $cliente = ClienteRepository::get($emprestimo->getClienteId());
+                                echo $emprestimo->getClienteId() . " - " . $cliente->getNome(); ?>
+                            </td>
+                            <td><?php echo $emprestimo->getDataVencimento("d/m/Y"); ?> </td>
+                            <td><?php echo $emprestimo->getDataDevolucao(); ?> </td>
+
+                            <td>
+                                <?php 
+                                if(
+                                $emprestimo->getDataRenovacao() == null &&
+                                $emprestimo->getDataRenovacao() == null &&
+                                $emprestimo->getDataAlteracao() == null
+                                ){?>
+                                  <a href="emprestimo_excluir.php?id=<?php echo $emprestimo->getId(); ?>" class="btn btn-success">Devolvido</a>
+                                <?php } ?>
+                                <?php 
+                                if(
+                               $emprestimo->getDataDevolucao()==null
+                                ){?>
+                                  <a href="emprestimo_devolver.php?id=<?php echo $emprestimo->getId(); ?>" class="btn btn-warning">Devolver</a>
+                                <?php } ?>
+
+
+                            </td>
+                        </tr>
+                    <?php
+                    }
+                    ?>
           </tbody>
             </table>
         </div>

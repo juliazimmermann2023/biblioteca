@@ -43,8 +43,9 @@ class Emprestimo{
         return $datetime->format($format);
     }
     
-    public function getDataVencimento(){
-        return $this->data_vencimento;
+    public function getDataVencimento($format = "Y-m-d"){
+        $datetime = DateTime::createFromFormat("Y-m-d",$this->data_vencimento);
+        return $datetime->format($format);
     }
 
     public function setDataVencimento($data_vencimento){

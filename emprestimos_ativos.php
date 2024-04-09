@@ -144,6 +144,13 @@ $emprestimo = Factory::emprestimo();
                   <?php if(EmprestimoRepository::countByDataAlteracao($emprestimo->getId()) == null && EmprestimoRepository::countByDataDevolucao($emprestimo->getId()) == null && EmprestimoRepository::countByDataAlteracao($emprestimo->getId()) == null){ ?>
                     <a class="btn btn-danger" href="emprestimo_excluir.php?id=<?php echo $emprestimo->getId(); ?>" id="excluir">Excluir</a>
                   <?php } ?>
+                  <?php 
+                                if(
+                               $emprestimo->getDataDevolucao()==null
+                                ){?>
+                                  <a href="emprestimo_devolver.php?id=<?php echo $emprestimo->getId(); ?>" class="btn btn-warning">Devolver</a>
+                                <?php } ?>
+
                 </td>
 
               </tr>

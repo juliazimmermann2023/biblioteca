@@ -66,11 +66,14 @@ class Cliente
   {
     $this->rg = $rg;
   }
+  public function getDataNascimento($format = "Y-m-d"){
+    $datetime = DateTime::createFromFormat("Y-m-d",$this->data_nascimento);
 
-  public function getDataNascimento()
-  {
-    return $this->data_nascimento;
-  }
+    if($datetime){
+        return $datetime->format($format);
+    }
+    return null;
+}
   public function setDataNascimento($data_nascimento)
   {
     $this->data_nascimento = $data_nascimento;

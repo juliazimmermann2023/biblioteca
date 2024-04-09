@@ -5,6 +5,7 @@ if (!Auth::isAuthenticated()) {
     header("Location: login.php");
     exit();
 }
+
 $user = Auth::getUser();
 
 if (!isset($_GET['id'])) {
@@ -20,7 +21,6 @@ if (!$emprestimo) {
     header("location: emprestimo_listagem.php?3");
     exit();
 }
-$novo_emprestimo = Factory::emprestimo();
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -119,11 +119,11 @@ $novo_emprestimo = Factory::emprestimo();
     <?php include("include/menu.php"); ?>
     <div class="container">
 
-        <h1>Renovar > empréstimo</h1>
+        <h1>Devolver > empréstimo</h1>
     
         <div class="row mt-4">
             <div class="col-md-12">
-            <form action="emprestimo_efetuar_renovacao.php" method="POST">
+            <form action="emprestimo_devolver_post.php" method="POST">
                 <div class="mb-3">
                 <label for="livro" class="form-label">Livro:</label>
                 <select name="livro_id" id="livro" required>
@@ -151,10 +151,29 @@ $novo_emprestimo = Factory::emprestimo();
                                         </option>
                                    
                                 </select>
-                        <br>
+                                <br>
+                    <label for="data_devolucao" class="form-label" style="color: black;"> Nova Data de Devolução</label>
+                    <input type="text" name="data_devolucao" class="form-control data_devolucao" id="data_devolucao" readonly value="<?php echo date("d/m/Y"); ?>">
                     <label for="vencimento" class="form-label" style="color: black;"> Nova Data Vencimento</label>
-                    <input type="text" name="data_vencimento" class="form-control data_vencimento" id="vencimento"  value="<?php echo $emprestimo->showDataVencimento("d/m/Y"); ?>">
+                    <input type="text" name="data_vencimento" class="form-control data_vencimento" id="vencimento" readonly value="<?php echo $emprestimo->showDataVencimento("d/m/Y"); ?>">
+                    <label for="multa" class="form-label" style="color: black;"> Multa (R$)</label>
+                    <?php
+                    $multa = 0;
+                    if($emprestimo->getDataVencimento()< date("Y-m-d")){
+                        $datetime_vencimento=DateTime::createFromFormat("Y-m-d H:i:s", $emprestimo->getDataVencimento(). "00:00:00");
 
+                        $timestemp_vencimento=$datetime_vencimento->format("U");
+                       $datetime=DateTime::createFromFormat("Y-m-d H:i:s", date("Y-m-d"). "00:00:00");
+                       $timestemp_hoje=$datetime->format("U");
+                       $diff=$timestemp_hoje-$timestemp_vencimento;
+                       $multa= intval($diff/(60*60*24))*1;
+
+
+       
+                    }
+                    ?>
+
+                    <input type="text" name="multa" class="form-control " id="multa"value="<?php echo number_format(3,2,",","."); ?>"readonly>
                 </div>
                 <div class="mb-3">  
                     <a href="emprestimo_listagem.php" class="btn btn-danger">Voltar</a>

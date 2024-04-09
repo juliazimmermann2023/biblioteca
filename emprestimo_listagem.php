@@ -141,10 +141,31 @@ $emprestimo = Factory::emprestimo();
                 <td><?php echo $emprestimo->showDataVencimento("d/m/Y");?></td>
                 <td><?php echo $emprestimo->showDataDevolucao("d/m/Y"); ?></td>
                 <td>
-                  <?php if(EmprestimoRepository::countByDataAlteracao($emprestimo->getId()) == null && EmprestimoRepository::countByDataDevolucao($emprestimo->getId()) == null && EmprestimoRepository::countByDataAlteracao($emprestimo->getId()) == null){ ?>
-                  <a class="btn btn-danger" href="emprestimo_excluir.php?id=<?php echo $emprestimo->getId(); ?>" id="excluir">Excluir</a>
-                  <?php } ?>
-                </td>
+                                <?php 
+                                if(
+                                $emprestimo->getDataRenovacao() == null &&
+                                $emprestimo->getDataRenovacao() == null &&
+                                $emprestimo->getDataAlteracao() == null
+                                ){?>
+                                  <a href="emprestimo_excluir.php?id=<?php echo $emprestimo->getId(); ?>" class="btn btn-danger">Excluir</a>
+                                <?php } ?>
+
+                                <?php 
+                                if(
+                                $emprestimo->getDataVencimento("Y-m-d") >= date("Y-m-d") &&
+                                $emprestimo->getDataRenovacao() == null &&
+                                $emprestimo->getDataAlteracao() == null
+                                ){?>
+                                  <a href="emprestimo_renovar.php?id=<?php echo $emprestimo->getId(); ?>" class="btn btn-warning">Renovar</a>
+                                <?php } ?>
+                                <?php 
+                                if(
+                               $emprestimo->getDataDevolucao()==null
+                                ){?>
+                                  <a href="emprestimo_devolver.php?id=<?php echo $emprestimo->getId(); ?>" class="btn btn-warning">Devolver</a>
+                                <?php } ?>
+
+                            </td>
 
               </tr>
               <?php
