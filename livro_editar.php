@@ -116,16 +116,18 @@ if (!$livro) {
                 <form action="livro_editar_post.php" method="POST">
                     <div class="mb-3">
                         <label for="nome" class="form-label">Titulo</label>
-                        <input type="text" name="titulo" class="form-control" name="id" value="<?php echo $livro->getTitulo() ?>">
+                        <input type="text" name="titulo" class="form-control" id="titulo" value="<?php echo $livro->getTitulo() ?>">
 
                         <label for="nome" class="form-label">Ano de lançamento</label>
-                        <input type="text" name="nome" id="nome" class="form-control" name="id" value="<?php echo $livro->getAno() ?>">
+                        <input type="text" name="ano" id="nome" class="form-control" value="<?php echo $livro->getAno() ?>">
 
                         <label for="nome" class="form-label">Gênero</label>
-                        <input type="text" name="nome" id="nome" class="form-control" name="id" value="<?php echo $livro->getGenero() ?>">
+                        <input type="text" name="genero" id="genero" class="form-control" value="<?php echo $livro->getGenero() ?>">
+
+                        <br>
 
                         <label for="autor" class="form-label">id autor</label>
-                        <select name="autor" id="autor" class="form-select form-select-lg mb-3" aria-label="Large select example">
+                        <select name="autor_id" id="autor_id" class="form-select form-select-lg mb-3" aria-label="Large select example">
                             <?php $autor = AutorRepository::listAll() ?>
                             <?php
                             foreach (AutorRepository::listAll() as $autor) {
@@ -136,8 +138,10 @@ if (!$livro) {
                             <?php } ?>
                         </select>
 
+                        <br>
+
                         <label for="nome" class="form-label">Isbn</label>
-                        <input type="text" name="nome" id="nome" class="form-control" name="id" value="<?php echo $livro->getIsbn() ?>">
+                        <input type="text" name="isbn" id="isbn" class="form-control" value="<?php echo $livro->getIsbn() ?>">
                     </div>
                     <div class="mb-3">
                         <input type="hidden" name="id" value="<?php echo $livro->getId() ?>">

@@ -29,6 +29,29 @@ class ClienteRepository implements Repository{
         return $list;
     }
 
+    public static function listAllWithoutEmprestimoActive(){
+        $db = DB::getInstance();
+        $sql = "SELECT * FROM cliente where id not in (select cliente_id from emprestimo where data_devolucao is null)";
+        $query = $db->prepare($sql);
+        $query->execute();
+        $list = array();
+        foreach($query->fetchAll(PDO::FETCH_OBJ) as $row){
+            $cliente = new Cliente;
+            $cliente->setId($row->id);
+            $cliente->setNome($row->nome);
+            $cliente->setTelefone($row->telefone);
+            $cliente->setEmail($row->email);
+            $cliente->setCpf($row->cpf);
+            $cliente->setRg($row->rg);
+            $cliente->setDataNascimento($row->data_nascimento); 
+            $cliente->setDataInclusao($row->data_inclusao);
+            $cliente->setDataAlteracao($row->data_alteracao);
+            $cliente->setInclusaoFuncionarioId($row->inclusao_funcionario_id);
+            $cliente->setAlteracaoFuncionarioId($row->alteracao_funcionario_id);
+            $list[] = $cliente;
+        }
+    return $list;
+    }
     public static function get($id){
         $db = DB::getInstance();
 

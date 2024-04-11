@@ -152,10 +152,10 @@ if (!$emprestimo) {
                                    
                                 </select>
                                 <br>
-                    <label for="data_devolucao" class="form-label" style="color: black;"> Nova Data de Devolução</label>
+                    <label for="data_devolucao" class="form-label" style="color: black;"> Data de Devolução</label>
                     <input type="text" name="data_devolucao" class="form-control data_devolucao" id="data_devolucao" readonly value="<?php echo date("d/m/Y"); ?>">
                     <label for="vencimento" class="form-label" style="color: black;"> Nova Data Vencimento</label>
-                    <input type="text" name="data_vencimento" class="form-control data_vencimento" id="vencimento" readonly value="<?php echo $emprestimo->showDataVencimento("d/m/Y"); ?>">
+                    <input type="text" name="data_vencimento" class="form-control data_vencimento" id="vencimento" readonly value="<?php echo $emprestimo->getDataVencimento("d/m/Y"); ?>">
                     <label for="multa" class="form-label" style="color: black;"> Multa (R$)</label>
                     <?php
                     $multa = 0;
@@ -177,6 +177,7 @@ if (!$emprestimo) {
                 </div>
                 <div class="mb-3">  
                     <a href="emprestimo_listagem.php" class="btn btn-danger">Voltar</a>
+                    <input type="hidden" name="id" value="<?php echo $emprestimo->getId()?>">
                     <button type="submit" class="btn btn-info">Enviar</button>
                 </div>
             </form>

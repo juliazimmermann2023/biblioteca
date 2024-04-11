@@ -212,13 +212,15 @@ class EmprestimoRepository implements repository
     public static function update($obj){
         $db = DB::getInstance();
 
-        $sql = "UPDATE emprestimo SET livro_id = :livro_id, data_alteracao = :data_alteracao, data_renovacao = :data_renovacao, alteracao_funcionario_id = :alteracao_funcionario_id Where id = :id";
+        $sql = "UPDATE emprestimo SET livro_id = :livro_id, data_alteracao = :data_alteracao, data_devolucao = :data_devolucao, data_renovacao = :data_renovacao, alteracao_funcionario_id = :alteracao_funcionario_id, devolucao_funcionario_id = :devolucao_funcionario_id Where id = :id";
 
         $query = $db->prepare($sql);
         $query->bindValue(":livro_id",$obj->getLivroId());
+        $query->bindValue(":data_devolucao",$obj->getDataDevolucao());
         $query->bindValue(":data_renovacao",$obj->getDataRenovacao());
         $query->bindValue(":data_alteracao",$obj->getDataAlteracao());
         $query->bindValue(":alteracao_funcionario_id",$obj->getAlteracaoFuncionarioId());
+        $query->bindValue(":devolucao_funcionario_id",$obj->getDevolucaoFuncionarioId());
         $query->bindValue(":id",$obj->getId());
         $query->execute();
     }
@@ -342,6 +344,31 @@ class EmprestimoRepository implements repository
 
         $query = $db->prepare($sql);
         $query->bindValue(":emprestimo_id",$emprestimo_id);
+        $query->execute();
+
+        $row = $query->fetch(PDO::FETCH_ASSOC);
+        return $row["count(*)"];
+    }
+    public static function countByLivrosDevol($livro_id){ 
+        $db = DB::getInstance();
+
+        $sql = 'SELECT count(*) FROM emprestimo WHERE livro_id = :livro_id and data_devolucao is not null'; 
+
+        $query = $db->prepare($sql);
+        $query->bindValue(":livro_id", $livro_id);
+        $query->execute();
+
+        $row = $query->fetch(PDO::FETCH_ASSOC);
+        return $row["count(*)"];
+    }
+
+    public static function countByClientesDevol($cliente_id){ 
+        $db = DB::getInstance();
+
+        $sql = 'SELECT count(*) FROM emprestimo WHERE cliente_id = :cliente_id and data_devolucao is not null'; 
+
+        $query = $db->prepare($sql);
+        $query->bindValue(":cliente_id",$cliente_id);
         $query->execute();
 
         $row = $query->fetch(PDO::FETCH_ASSOC);

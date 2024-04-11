@@ -22,17 +22,15 @@ if(!$emprestimo){
 }
 
 $novo_emprestimo = Factory::emprestimo();
- $datetime = DateTime::createFromFormat('d/m/Y', $_POST["data_vencimento"]);
- $dateFormatted = $datetime->format('Y-m-d');
 
 
 
+date_default_timezone_set('America/Sao_Paulo');
 
 $emprestimo->setDataAlteracao(date('Y-m-d'));
 $emprestimo->setAlteracaoFuncionarioId($user->getId());
 $emprestimo->setDevolucaoFuncionarioId($user->getId());
-$emprestimo->setDataVencimento($novo_emprestimo->getDataVencimento());
-$emprestimo->setDataDevolucao($date('d/m/Y'));
+$emprestimo->setDataDevolucao(date('Y-m-d H:i:s'));
 
 
 EmprestimoRepository::update($emprestimo);

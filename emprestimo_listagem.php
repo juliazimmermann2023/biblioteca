@@ -138,8 +138,8 @@ $emprestimo = Factory::emprestimo();
                         echo $emprestimo->getClienteId()." - ". $cliente->getNome(); 
                     ?>
                 </td>
-                <td><?php echo $emprestimo->showDataVencimento("d/m/Y");?></td>
-                <td><?php echo $emprestimo->showDataDevolucao("d/m/Y"); ?></td>
+                <td><?php echo $emprestimo->getDataVencimento("d/m/Y");?></td>
+                <td><?php echo $emprestimo->getDataDevolucao("d/m/Y"); ?></td>
                 <td>
                                 <?php 
                                 if(

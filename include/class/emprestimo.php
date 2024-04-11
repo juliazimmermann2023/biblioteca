@@ -87,8 +87,10 @@ class Emprestimo{
         }
         return null;
     }
-    public function getDataDevolucao(){
+    public function getDataDevolucao($format = "Y-m-d"){
+        $datetime = DateTime::createFromFormat("Y-m-d",$this->data_devolucao);
         return $this->data_devolucao;
+
     }
 
     public function setDataDevolucao($data_devolucao){

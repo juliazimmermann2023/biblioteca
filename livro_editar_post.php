@@ -22,16 +22,17 @@ if(!$livro){
     exit();
 }
 
-if(!isset($_POST['nome'])){
-    header("Location: livro_novo.php?id=".$livro->getId());
+if(!isset($_POST['titulo'])){
+    header("Location: livro_editar.php?id=".$livro->getId());
     exit();
 }
-if($_POST["nome" ] == "" || $_POST["nome" == null]){
-    header("Location: livro_novo.php?id=".$livro->getId());
+if($_POST["titulo" ] == '' || $_POST["titulo"] == null){
+    header("Location: livro_editar.php?id=");
     exit();
 }
 
 
+date_default_timezone_set('America/Sao_Paulo');
 
 $livro->setTitulo($_POST['titulo']);
 $livro->setAno($_POST['ano']);
@@ -39,7 +40,7 @@ $livro->setGenero($_POST['genero']);
 $livro->setAutorId($_POST['autor_id']);
 $livro->setIsbn($_POST['isbn']);
 $livro->setAlteracaoFuncionarioId($user->getID());
-$livro->setDataAlteracao(date('Y-d-m h:i:s'));
+$livro->setDataAlteracao(date('Y-d-m H:i:s'));
 
 LivroRepository::update($livro);
 

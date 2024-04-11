@@ -114,26 +114,26 @@ $emprestimo = Factory::emprestimo();
                 <label for="livro" class="form-label">Livro:</label>
                 <select name="livro_id" id="livro" required>
                                     <?php
-                                        foreach(LivroRepository::listAll() as $livro){
-                                            if(EmprestimoRepository::countByLivro($livro->getId()) == 0){
+                                        foreach(LivroRepository::listAllWithoutEmprestimoActive() as $livro){
+                                            
                                     ?>
                                         <option value="<?php echo $livro->getId();?>">
                                             <?php echo $livro->getTitulo(); ?>
                                         </option>
-                                    <?php }} ?>
+                                    <?php } ?>
                                 </select>
 <br>
 <br>
                     <label for="cliente" class="form-label">Clientes:</label>
                     <select name="cliente_id" id="cliente" required>
                                     <?php
-                                        foreach(ClienteRepository::listAll() as $cliente){
-                                            if(EmprestimoRepository::countByCliente($cliente->getId()) == 0){
+                                        foreach(ClienteRepository::listAllWithoutEmprestimoActive() as $cliente){
+                                            
                                     ?>
                                         <option value="<?php echo $cliente->getId();?>">
                                             <?php echo $cliente->getNome(); ?>
                                         </option>
-                                    <?php }} ?>
+                                    <?php } ?>
                                 </select>
                         <br>
                     <label for="vencimento" class="form-label" style="color: black;">Data Vencimento</label>
@@ -158,3 +158,16 @@ $(document).ready(function(){
     })
 </script>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
