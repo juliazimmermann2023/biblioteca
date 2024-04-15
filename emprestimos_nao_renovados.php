@@ -13,7 +13,7 @@ $emprestimo = Factory::emprestimo();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NOVO EMPRÉSTIMO > LISTAGEM</title>
+    <title>NOVO EMPRÉSTIMO > NÃO RENOVADOS</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="style/menu.css">
@@ -118,7 +118,7 @@ $emprestimo = Factory::emprestimo();
                     <th>Cliente</th>
                     <th>Data Vencimento</th>
                     <th>Data Devolução</th>
-                    <th>Ações</th>
+                   
 
                 </thead>
                 <tbody>
@@ -142,23 +142,10 @@ $emprestimo = Factory::emprestimo();
                 <td><?php echo $emprestimo->getDataDevolucao("d/m/Y"); ?></td>
                 <td>
                   <?php if(EmprestimoRepository::countByDataAlteracao($emprestimo->getId()) == null && EmprestimoRepository::countByDataDevolucao($emprestimo->getId()) == null && EmprestimoRepository::countByDataAlteracao($emprestimo->getId()) == null){ ?>
-                    <a class="btn btn-danger" href="emprestimo_excluir.php?id=<?php echo $emprestimo->getId(); ?>" id="excluir">Excluir</a>
+                    
                   <?php } ?>
 
-                  <?php 
-                                if(
-                                $emprestimo->getDataVencimento("Y-m-d") >= date("Y-m-d") &&
-                                $emprestimo->getDataRenovacao() == null &&
-                                $emprestimo->getDataAlteracao() == null
-                                ){?>
-                                  <a href="emprestimo_renovar.php?id=<?php echo $emprestimo->getId(); ?>" class="btn btn-warning">Renovar</a>
-                                <?php } ?>
-                                <?php 
-                                if(
-                               $emprestimo->getDataDevolucao()==null
-                                ){?>
-                                  <a href="emprestimo_devolver.php?id=<?php echo $emprestimo->getId(); ?>" class="btn btn-warning">Devolver</a>
-                                <?php } ?>
+                 
 
                 </td>
 

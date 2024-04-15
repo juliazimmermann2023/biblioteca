@@ -33,6 +33,7 @@ if( $_POST["livro_id"] == "" || $_POST ["livro_id"] == null){
 }
 
 
+date_default_timezone_set('America/Sao_Paulo');
 $emprestimo = Factory::emprestimo();
 
 $emprestimo->setLivroId($_POST["livro_id"]);

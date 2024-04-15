@@ -5,6 +5,7 @@ if (!Auth::isAuthenticated()) {
     exit();
 }
 
+date_default_timezone_set('America/Sao_Paulo');
 $user = Auth::getUser();
 if (!isset($_POST["id"])) {
     header("location:autor_listagem.php");
@@ -14,6 +15,7 @@ if ($_POST["id"] == "" || $_POST["id"] == null) {
     header("location:autor_listagem.php");
     exit();
 }
+
 $autor = AutorRepository::get($_POST["id"]);
 
 if (!$autor) {

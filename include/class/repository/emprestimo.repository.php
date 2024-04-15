@@ -6,7 +6,7 @@ class EmprestimoRepository implements repository
 
     public static function listAll(){
         $db = DB::getInstance();
-        $sql = "SELECT * FROM emprestimo";
+        $sql = "SELECT * FROM emprestimo order by id desc";
         $query = $db->prepare($sql);
         $query->execute();
 
@@ -81,7 +81,7 @@ class EmprestimoRepository implements repository
     }
     public static function listNotRenovac(){
         $db = DB::getInstance();
-        $sql = "SELECT * FROM emprestimo WHERE data_renovacao is null and data_devolucao is null";
+        $sql = "SELECT * FROM emprestimo WHERE data_renovacao is null and data_devolucao is null ";
         $query = $db->prepare($sql);
         $query->execute();
 

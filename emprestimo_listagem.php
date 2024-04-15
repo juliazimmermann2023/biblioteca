@@ -139,7 +139,7 @@ $emprestimo = Factory::emprestimo();
                     ?>
                 </td>
                 <td><?php echo $emprestimo->getDataVencimento("d/m/Y");?></td>
-                <td><?php echo $emprestimo->getDataDevolucao("d/m/Y"); ?></td>
+                <td><?php echo $emprestimo->getDataDevolucao("d/m/Y H:i:s "); ?></td>
                 <td>
                                 <?php 
                                 if(
@@ -176,6 +176,13 @@ $emprestimo = Factory::emprestimo();
         </div>
         </div>
     </div>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="js/jquery.mask.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('.data_vencimento').mask('00/00/0000');
+        })
+    </script>
 </body>
 
 </html>

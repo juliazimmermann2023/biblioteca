@@ -139,7 +139,7 @@ $emprestimo = Factory::emprestimo();
                     ?>
                 </td>
                 <td><?php echo $emprestimo->getDataVencimento("d/m/Y");?></td>
-                <td><?php echo $emprestimo->getDataDevolucao("d/m/Y"); ?></td>
+                <td><?php echo $emprestimo->getDataDevolucao("d/m/Y H:i:s"); ?></td>
                 <td>
                   <?php if(EmprestimoRepository::countByDataAlteracao($emprestimo->getId()) == null && EmprestimoRepository::countByDataDevolucao($emprestimo->getId()) == null && EmprestimoRepository::countByDataAlteracao($emprestimo->getId()) == null){ ?>
                  

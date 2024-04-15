@@ -13,6 +13,7 @@ if ($_GET["id"] == "" || $_GET["id"] == NULL) {
     exit();
 }
 $livro = LivroRepository::get($_GET["id"]);
+
 if (!$livro) {
     header("location: livro_listagem.php?3");
     exit();
@@ -115,13 +116,13 @@ if (!$livro) {
             <div class="col-md-12">
                 <form action="livro_editar_post.php" method="POST">
                     <div class="mb-3">
-                        <label for="nome" class="form-label">Titulo</label>
+                        <label for="titulo" class="form-label">Titulo</label>
                         <input type="text" name="titulo" class="form-control" id="titulo" value="<?php echo $livro->getTitulo() ?>">
 
-                        <label for="nome" class="form-label">Ano de lançamento</label>
+                        <label for="ano" class="form-label">Ano de lançamento</label>
                         <input type="text" name="ano" id="nome" class="form-control" value="<?php echo $livro->getAno() ?>">
 
-                        <label for="nome" class="form-label">Gênero</label>
+                        <label for="genero" class="form-label">Gênero</label>
                         <input type="text" name="genero" id="genero" class="form-control" value="<?php echo $livro->getGenero() ?>">
 
                         <br>

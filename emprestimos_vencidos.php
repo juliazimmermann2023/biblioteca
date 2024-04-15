@@ -141,14 +141,7 @@ $emprestimo = Factory::emprestimo();
                             <td><?php echo $emprestimo->getDataDevolucao(); ?> </td>
 
                             <td>
-                                <?php 
-                                if(
-                                $emprestimo->getDataRenovacao() == null &&
-                                $emprestimo->getDataRenovacao() == null &&
-                                $emprestimo->getDataAlteracao() == null
-                                ){?>
-                                  <a href="emprestimo_excluir.php?id=<?php echo $emprestimo->getId(); ?>" class="btn btn-success">Devolvido</a>
-                                <?php } ?>
+                               
                                 <?php 
                                 if(
                                $emprestimo->getDataDevolucao()==null

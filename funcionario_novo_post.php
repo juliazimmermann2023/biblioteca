@@ -17,6 +17,7 @@ if($_POST["nome" == ""] || $_POST["nome" == null]){
     exit();
 }
 
+date_default_timezone_set('America/Sao_Paulo');
 $funcionario = Factory::funcionario();
 
 $funcionario->setNome($_POST['nome']);

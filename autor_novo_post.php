@@ -5,6 +5,7 @@ if (!Auth::isAuthenticated()) {
     exit();
 }
 
+date_default_timezone_set('America/Sao_Paulo');
 $user = Auth::getUser();
 if (!isset ($_POST["nome"])) {
     header("location: autor_novo.php");

@@ -118,7 +118,7 @@ $emprestimo = Factory::emprestimo();
                     <th>Cliente</th>
                     <th>Data Vencimento</th>
                     <th>Data Devolução</th>
-                    <th>Ações</th>
+                 
 
                 </thead>
                 <tbody>
@@ -142,14 +142,9 @@ $emprestimo = Factory::emprestimo();
                 <td><?php echo $emprestimo->getDataDevolucao("d/m/Y"); ?></td>
                 <td>
                   <?php if(EmprestimoRepository::countByDataAlteracao($emprestimo->getId()) == null && EmprestimoRepository::countByDataDevolucao($emprestimo->getId()) == null && EmprestimoRepository::countByDataAlteracao($emprestimo->getId()) == null){ ?>
-                  <a href="emprestimo_excluir.php?id=<?php echo $emprestimo->getId(); ?>" id="excluir">Excluir</a>
+                  
                   <?php } ?>
-                  <?php 
-                                if(
-                               $emprestimo->getDataDevolucao()==null
-                                ){?>
-                                  <a href="emprestimo_devolver.php?id=<?php echo $emprestimo->getId(); ?>" class="btn btn-warning">Devolver</a>
-                                <?php } ?>
+                  
 
                 </td>
 

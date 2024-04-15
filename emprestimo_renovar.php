@@ -158,6 +158,7 @@ $novo_emprestimo = Factory::emprestimo();
                 </div>
                 <div class="mb-3">  
                     <a href="emprestimo_listagem.php" class="btn btn-danger">Voltar</a>
+                    <input type="hidden" name="id" value="<?php echo $emprestimo->getId(); ?>">
                     <button type="submit" class="btn btn-info">Enviar</button>
                 </div>
             </form>

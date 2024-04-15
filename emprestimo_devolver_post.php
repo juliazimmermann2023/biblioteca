@@ -21,7 +21,7 @@ if(!$emprestimo){
     exit();
 }
 
-$novo_emprestimo = Factory::emprestimo();
+/*$novo_emprestimo = Factory::emprestimo();*/
 
 
 
@@ -35,4 +35,4 @@ $emprestimo->setDataDevolucao(date('Y-m-d H:i:s'));
 
 EmprestimoRepository::update($emprestimo);
 
-header("Location: emprestimo_listagem.php?5");
+header("Location: emprestimo_listagem.php?alteFunId=". $emprestimo->getAlteracaoFuncionarioId() ."?renovFunId=". $emprestimo->getDevolucaoFuncionarioId() ."?dataAlter=". $emprestimo->getDataAlteracao() ."?dataRenov=" . $emprestimo->getDataRenovacao(). "?id=". $emprestimo->getId());

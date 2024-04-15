@@ -80,16 +80,19 @@ class Emprestimo{
     public function setDataRenovacao($data_renovacao){
         $this->data_renovacao = $data_renovacao;
     }
-    public function showDataDevolucao($format = "Y-m-d"){
+    public function showDataDevolucao($format = "Y-m-d H:i:s"){
         $datetime = DateTime::createFromFormat("Y-m-d",$this->data_devolucao);
         if($datetime){
             return $datetime->format($format);
         }
         return null;
     }
-    public function getDataDevolucao($format = "Y-m-d"){
-        $datetime = DateTime::createFromFormat("Y-m-d",$this->data_devolucao);
-        return $this->data_devolucao;
+    public function getDataDevolucao($format = "Y-m-d H:i:s"){
+        $datetime = DateTime::createFromFormat("Y-m-d H:i:s",$this->data_devolucao);
+        if($datetime){
+            return $datetime->format($format);
+        }
+        return null;
 
     }
 

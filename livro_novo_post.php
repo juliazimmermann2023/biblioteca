@@ -60,6 +60,7 @@ $livro->setDataInclusao(date('Y-d-m H:i:s'));
 
 $livro_retorno = LivroRepository::insert($livro);
 
+date_default_timezone_set('America/Sao_Paulo');
 if($livro_retorno > 0){
     header("Location: livro_editar.php?id=".$livro_retorno);
     exit();

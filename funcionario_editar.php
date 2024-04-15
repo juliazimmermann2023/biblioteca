@@ -136,9 +136,9 @@ if(!$funcionario){
                         
                     
                     </div>
-                    <a type="button" class="btn btn-info" href="funcionario_senha.php">Alterar senha</a>
+                    <a href="funcionario_senha.php?id=<?php echo $funcionario->getId(); ?>" class="btn btn-info" >Alterar senha</a>
                     <div class="mb-3">
-                        <input type="hidden" name="id" value="<?php echo $funcionario->getId()?>">
+                        <input type="hidden" name="id" value="<?php echo $funcionario->getId() ?>">
                         <button type="submit" class="btn btn-info">ENVIAR</button>
                     </div>
                 </form>

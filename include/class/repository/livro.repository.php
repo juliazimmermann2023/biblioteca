@@ -91,18 +91,19 @@ class LivroRepository implements Repository{
         $id = $db->lastInsertId(); // mostra o ultimo id inserido
         return $id;
     }
-    public static function update($obj){
+    public static function update ($obj){
         $db = DB::getInstance();
-        $sql = "UPDATE livro SET titulo = :titulo, ano = :ano, genero = :genero, isbn = :isbn, autor_id = :autor_id data_alteracao = :data_alteracao, alteracao_funcionario_id = :alteracao_funcionario_id WHERE id = :id";
+        $sql = "UPDATE livro SET titulo = :titulo, ano = :ano, genero = :genero, isbn = :isbn, autor_id = :autor_id, data_alteracao = :data_alteracao, alteracao_funcionario_id = :alteracao_funcionario_id WHERE id = :id";
         $query = $db->prepare($sql);
-        $query->bindValue(":id",$obj->getId());
         $query->bindValue(":titulo",$obj->getTitulo());
         $query->bindValue(":ano",$obj->getAno());
         $query->bindValue(":genero",$obj->getGenero());
         $query->bindValue(":isbn",$obj->getIsbn());
         $query->bindValue(":autor_id",$obj->getAutorId());
-        $query->bindValue(":alteracao_inclusao",$obj->getDataInclusao());
-        $query->bindValue(":alteracao_funcionario_id",$obj->getInclusaoFuncionarioId());
+        $query->bindValue(":data_alteracao",$obj->getDataAlteracao());
+        $query->bindValue(":alteracao_funcionario_id",$obj->getAlteracaoFuncionarioId());
+        $query->bindValue(":id",$obj->getId());
+        $query->execute();
     }
     public static function delete($id){
         $db = DB::getInstance();
