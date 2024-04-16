@@ -107,7 +107,7 @@ $emprestimo = Factory::emprestimo();
             <a class="btn " href="emprestimos_nao_renovados.php">Não renovados</a>
             <a class="btn " href="emprestimos_renovados.php">Renovados</a>
             <a class="btn " href="emprestimos_vencidos.php">Vencidos</a>
-            <a class="btn btn-info" href="emprestimo_novo.php">Adicionar um emprestimo</a>
+            <a class="btn btn-info" href="emprestimo_novo.php">Adicionar um empréstimo</a>
         </div>
         <div class="table-responsive">
             <table class="table">

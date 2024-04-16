@@ -18,6 +18,11 @@ if($_POST["nome"] == "" || $_POST["nome"] == null){
     header("location: cliente_novo.php?2");
     exit();
 }
+if($_POST["data_nascimento"] >= date("Y-m-d")){
+    header("location: cliente_novo.php?Data Nascimento inválida");
+
+    exit();
+}
 
 $cliente = Factory::cliente();
 

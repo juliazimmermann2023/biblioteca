@@ -114,7 +114,7 @@ if(!$funcionario){
 <body>
     <?php include("include/menu.php"); ?>
     <div class="container">
-    <h1>EDITAR FUNCIONARIO</h1>
+    <h1>EDITAR FUNCIONÁRIO</h1>
         <a type="button" class="btn btn-warning" href="funcionario_listagem.php">VOLTAR</a>
         <a type="button" class="btn btn-warning" href="funcionario_novo.php">NOVO</a>
         <div class="row mt-4">
